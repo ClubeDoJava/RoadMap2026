@@ -47,13 +47,14 @@ Use `Scoped Values` para compartilhar dados imutáveis entre *threads*.
 **(Adicione: Spring Native para integração com Spring Boot.)**
 
 ### Controle de Versão com Git:
-- [ ] Comandos essenciais do Git (`commit`, `push`, `pull`, `branch`, `merge`, `rebase`).
+- [ ] Comandos essenciais do Git (`commit`, `push`, `pull`, `branch`, `merge`, `rebase`)
+Utilize o site **Learn Git Branching** para desenvolver uma intuição melhor sobre a ferramenta.
 - [ ] Plataformas de hospedagem: GitHub (mais popular), GitLab, Bitbucket.
 - [ ] Fluxos de trabalho: Git Flow ou GitHub Flow (simplificado).
 
 **(Adicione: GitHub Codespaces para rodar projetos sem instalar nada localmente.)**
 
-**Prática contínua:** Crie um repositório no GitHub para cada projeto. Faça *commits* frequentes. 
+**Prática contínua:** Crie um repositório no GitHub para cada projeto. Faça *commits* frequentes.
 
 Integre GitHub Copilot para sugestões de código AI-assistidas.
 
@@ -77,6 +78,9 @@ Integre GitHub Copilot para sugestões de código AI-assistidas.
 
 ### APIs Fundamentais da JDK (Java Development Kit):
 - [ ] **Java Collections Framework:** `List` (`ArrayList`, `LinkedList`), `Set` (`HashSet`, `TreeSet`), `Map` (`HashMap`, `TreeMap`).
+- [ ] **Functional Interfaces:** base conceitual para lambdas e method references (`::`).
+- [ ] **APIs de funções úteis:** `Predicate<T>` (testar condição booleana), `Function<T, R>` (transformação de valores),
+`Supplier<T>` (fornecimento de valores sem exigir entrada).
 - [ ] **Streams API** e **Expressões Lambda**: para processamento de coleções de forma funcional e concisa.
 
  **(Adicione: Parallel Streams para performance.)**
@@ -98,6 +102,7 @@ Integre GitHub Copilot para sugestões de código AI-assistidas.
 - [ ] Princípios **SOLID** para *design* orientado a objetos.
 - [ ] Convenções de nomenclatura e formatação de código Java.
 - [ ] **Green Coding** – Otimização para eficiência energética (ex: reduzir *loops* ineficientes).
+- [ ] **Object Calisthenics** – Exercícios de disciplina para evoluir a qualidade e expressividade do código.
 
 **(Adicione: Use SonarLint para análise estática de código na IDE.)**
 
@@ -311,4 +316,4 @@ Compile para *native image* com GraalVM.
 4.  **Networking é Fundamental:** Participe de comunidades, *meetups* (online ou presenciais) e eventos. Trocar experiências com outros desenvolvedores acelera o aprendizado.
 5.  **Construa seu Portfólio:** Mantenha um perfil no **GitHub** com seus projetos bem documentados, incluindo *demos* de AI e *native apps*. Isso será seu cartão de visitas para o mercado de trabalho.
 
-**Boa sorte na sua jornada de aprendizado em Java!**  
+**Boa sorte na sua jornada de aprendizado em Java!**
