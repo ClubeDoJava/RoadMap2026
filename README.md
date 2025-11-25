@@ -312,7 +312,7 @@ Compile para *native image* com GraalVM.
 
 1.  **Mão na Massa Sempre:** A prática leva à maestria. Cada conceito aprendido deve ser aplicado em **projetos práticos**, por menores que sejam.
 2.  **Comece Simples, Evolua Gradualmente:** Para desenvolvimento web e APIs, **Spring Boot** é um excelente ponto de partida devido à sua popularidade e facilidade de configuração. Não tente aprender tudo de uma vez. Priorize **GraalVM** para *deploys* modernos.
-3.  **Mantenha-se Atualizado:** O ecossistema Java é dinâmico. Acompanhe as novidades das versões do Java (ex: Java 26+ previews), *frameworks* e tendências em *blogs* (InfoQ, Baeldung, DZone) e conferências como Devoxx ou Oracle Code One.
+3.  **Mantenha-se Atualizado:** O ecossistema Java é dinâmico. Acompanhe as novidades das versões do Java (ex: Java 25+ previews), *frameworks* e tendências em *blogs* (InfoQ, Baeldung, DZone) e conferências como Devoxx ou Oracle Code One.
 4.  **Networking é Fundamental:** Participe de comunidades, *meetups* (online ou presenciais) e eventos. Trocar experiências com outros desenvolvedores acelera o aprendizado.
 5.  **Construa seu Portfólio:** Mantenha um perfil no **GitHub** com seus projetos bem documentados, incluindo *demos* de AI e *native apps*. Isso será seu cartão de visitas para o mercado de trabalho.
 
