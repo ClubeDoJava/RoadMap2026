@@ -311,4 +311,4 @@ Compile para *native image* com GraalVM.
 4.  **Networking é Fundamental:** Participe de comunidades, *meetups* (online ou presenciais) e eventos. Trocar experiências com outros desenvolvedores acelera o aprendizado.
 5.  **Construa seu Portfólio:** Mantenha um perfil no **GitHub** com seus projetos bem documentados, incluindo *demos* de AI e *native apps*. Isso será seu cartão de visitas para o mercado de trabalho.
 
-**Boa sorte na sua jornada de aprendizado em Java!** Agora com tudo em markdown completo e checkpoints preservados. Se precisar de mais ajustes, é só falar! 🚀
+**Boa sorte na sua jornada de aprendizado em Java!**  
