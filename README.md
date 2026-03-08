@@ -1,8 +1,9 @@
 
-**Roadmap Otimizado para Aprender Java em 2026**  
+# Roadmap Otimizado para Aprender Java em 2026 
+
 (com IA como pair programmer inteligente)
 
-**Disclaimer:** A IA acelera muito, mas nunca use como muleta. 
+## **Disclaimer:** A IA acelera muito, mas nunca use como muleta. 
 
 Sempre peça explicação, trade-offs, como debugar e teste tudo. 
 
