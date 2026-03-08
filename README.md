@@ -1,14 +1,18 @@
 
 # Roadmap Otimizado para Aprender Java em 2026 
+---
+---
 
 Este roadmap foi desenhado para ajudar você no aprendizado da linguagem Java e seu ecossistema de forma estruturada e eficiente.
 
-## **Disclaimer:** A IA acelera muito, mas nunca use como muleta. Sempre peça explicação, trade-offs, como debugar e teste tudo. 
+## **Disclaimer:** A IA acelera muito, mas nunca use como muleta. 
+
+Sempre peça explicação, trade-offs, como debugar e teste tudo. 
 ### Mantenha um arquivo decisoes.md em cada projeto explicando suas escolhas. 
 ### Virtual Threads só onde tem I/O bloqueante. 
-
 Features preview são só para estudo.
 
+---
 ---
 
 ## 0. Primeiro passo obrigatório: Monte sua IA de programação
@@ -19,7 +23,9 @@ Instale o Cursor (melhor ferramenta em 2026 para Java) ou VS Code com Continue.d
 Conecte com Claude 4.6+ Sonnet ou Oppus.  
 
 Crie este prompt fixo e use em todo projeto:  
-“Você é um desenvolvedor Java sênior especializado em Java 25 LTS + Spring Boot 4. Sempre explique o motivo da escolha, mostre trade-offs, sugira testes e priorize código limpo e eficiente. Nunca use features preview em produção.”
+“Você é um desenvolvedor Java sênior especializado em Java 25 LTS + Spring Boot 4. 
+
+Sempre explique o motivo da escolha, mostre trade-offs, sugira testes e priorize código limpo e eficiente. Nunca use features preview em produção.”
 
 Regra de ouro: IA gera primeiro → você lê, entende, testa, melhora e escreve no decididoes.md.  
 Com isso pronto, você já ganha umas 4 semanas de vantagem.
@@ -36,7 +42,10 @@ Com isso pronto, você já ganha umas 4 semanas de vantagem.
 - [ ] Manipulação de strings e arrays básicos.
 - [ ] Entrada e saída padrão (console).
 
-**Projeto prático:** Desenvolva um gerenciador de tarefas simples para linha de comando que permita adicionar, listar e remover tarefas. Peça para a IA fazer a primeira versão com Virtual Threads para tarefas assíncronas básicas. Depois você refatora tudo explicando cada parte. Teste com JShell para experimentar rápido.
+**Projeto prático:** Desenvolva um gerenciador de tarefas simples para linha de comando que permita adicionar, listar e remover tarefas. 
+
+Peça para a IA fazer a primeira versão com Virtual Threads para tarefas assíncronas básicas. 
+Depois você refatora tudo explicando cada parte, teste com JShell para experimentar rápido.
 
 ### Orientação a Objetos (OOP) - O Paradigma Central do Java:
 - [ ] Classes e objetos: a base da OOP.
@@ -48,7 +57,9 @@ Com isso pronto, você já ganha umas 4 semanas de vantagem.
     - [ ] Polimorfismo: múltiplas formas de um objeto.
     - [ ] Abstração: modelando o essencial.
 
-**Projeto prático:** Crie um sistema simples de gerenciamento de uma biblioteca, com classes para Livro, Autor e Biblioteca, permitindo adicionar livros e buscar por título ou autor. Peça para a IA gerar a base usando Record e Scoped Values. Depois você ajusta e entende cada decisão.
+**Projeto prático:** Crie um sistema simples de gerenciamento de uma biblioteca, com classes para Livro, Autor e Biblioteca, permitindo adicionar livros e buscar por título ou autor. 
+
+Peça para a IA gerar a base usando Record e Scoped Values, depois você ajusta e entende cada decisão.
 
 ---
 
@@ -69,7 +80,9 @@ Com isso pronto, você já ganha umas 4 semanas de vantagem.
 - [ ] Plataformas de hospedagem: GitHub (mais popular), GitLab ou Bitbucket.
 - [ ] Fluxos de trabalho: GitHub Flow (o mais simples).
 
-**Prática contínua:** Crie um repositório no GitHub para cada projeto. Faça commits frequentes. Use GitHub Codespaces quando não quiser instalar nada na máquina.
+**Prática contínua:** Crie um repositório no GitHub para cada projeto. faça commits frequentes. 
+
+Use GitHub Codespaces quando não quiser instalar nada na máquina.
 
 ---
 
@@ -85,7 +98,9 @@ Com isso pronto, você já ganha umas 4 semanas de vantagem.
 - [ ] Sealed Classes and Interfaces.
 - [ ] Scoped Values, Unnamed Variables e String Templates.
 
-**Prática:** Para cada feature nova, peça para a IA mostrar 3 exemplos reais e dizer quando não usar em produção. Depois refatore seus projetos anteriores usando essas novidades.
+**Prática:** Para cada feature nova, peça para a IA mostrar 3 exemplos reais e dizer quando não usar em produção. 
+
+Depois refatore seus projetos anteriores usando essas novidades.
 
 ### APIs Fundamentais da JDK:
 - [ ] Java Collections Framework: List (ArrayList, LinkedList), Set (HashSet, TreeSet), Map (HashMap, TreeMap).
@@ -96,7 +111,9 @@ Com isso pronto, você já ganha umas 4 semanas de vantagem.
 - [ ] Optional.
 - [ ] java.time (LocalDate, LocalDateTime, etc.).
 
-**Projeto prático:** Crie um programa que gerencia um ranking de filmes, adicionando, classificando e listando os top N. Peça para a IA gerar a solução completa primeiro com coleções e streams.
+**Projeto prático:** Crie um programa que gerencia um ranking de filmes, adicionando, classificando e listando os top N. 
+
+Peça para a IA gerar a solução completa primeiro com coleções e streams.
 
 ### Introdução à Concorrência:
 - [ ] Thread e Runnable.
@@ -112,7 +129,9 @@ Com isso pronto, você já ganha umas 4 semanas de vantagem.
 - [ ] Object Calisthenics.
 
 Use SonarLint na IDE.  
-**Prática:** Resolva problemas no LeetCode ou HackerRank (fácil/médio). Peça ajuda da IA e explique o código com suas palavras.
+**Prática:** Resolva problemas no LeetCode ou HackerRank (fácil/médio). 
+
+Peça ajuda da IA e explique o código com suas palavras.
 
 ---
 
@@ -136,7 +155,9 @@ Use SonarLint na IDE.
 - [ ] AssertJ.
 - [ ] JaCoCo para cobertura.
 
-**Prática:** Depois de fazer a funcionalidade, peça para a IA gerar todos os testes. Você revisa e entende.
+**Prática:** Depois de fazer a funcionalidade, peça para a IA gerar todos os testes. 
+
+Você revisa e entende.
 
 ### Acesso Básico a Banco de Dados Relacional:
 - [ ] JDBC.
