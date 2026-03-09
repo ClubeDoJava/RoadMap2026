@@ -1,6 +1,6 @@
 
-# Roadmap Otimizado para Aprender Java em 2026 
----
+# Roadmap Otimizado para Aprender Java em 2026
+
 ---
 
 Este roadmap foi desenhado para ajudar você no aprendizado da linguagem Java e seu ecossistema de forma estruturada e eficiente.
@@ -20,14 +20,14 @@ Features preview são só para estudo.
 Antes de escrever qualquer linha de código, configure isso:
 
 Instale o Cursor (melhor ferramenta em 2026 para Java) ou VS Code com Continue.dev.  
-Conecte com Claude 4.6+ Sonnet ou Oppus.  
+Conecte com Claude 4.6+ Sonnet ou Opus.
 
 Crie este prompt fixo e use em todo projeto:  
 “Você é um desenvolvedor Java sênior especializado em Java 25 LTS + Spring Boot 4. 
 
 Sempre explique o motivo da escolha, mostre trade-offs, sugira testes e priorize código limpo e eficiente. Nunca use features preview em produção.”
 
-Regra de ouro: IA gera primeiro → você lê, entende, testa, melhora e escreve no decididoes.md.  
+Regra de ouro: IA gera primeiro → você lê, entende, testa, melhora e escreve no decisoes.md.  
 Com isso pronto, você já ganha umas 4 semanas de vantagem.
 
 ---
