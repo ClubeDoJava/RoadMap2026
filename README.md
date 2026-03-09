@@ -1,315 +1,273 @@
-
 # Roadmap Otimizado para Aprender Java em 2026
-
----
 
 Este roadmap foi desenhado para ajudar você no aprendizado da linguagem Java e seu ecossistema de forma estruturada e eficiente.
 
-## **Disclaimer:** A IA acelera muito, mas nunca use como muleta. 
+---
 
-Sempre peça explicação, trade-offs, como debugar e teste tudo. 
-### Mantenha um arquivo decisoes.md em cada projeto explicando suas escolhas. 
-### Virtual Threads só onde tem I/O bloqueante. 
-Features preview são só para estudo.
+> **Disclaimer:** A IA acelera muito, mas nunca use como muleta.
+> Sempre peça explicação, trade-offs, como debugar e teste tudo.
+> Mantenha um arquivo `decisoes.md` em cada projeto explicando suas escolhas.
+> Virtual Threads só onde tem I/O bloqueante. Features preview são só para estudo.
 
 ---
+
+## Índice
+
+- [0. Monte sua IA de programação](#0-primeiro-passo-obrigatório-monte-sua-ia-de-programação)
+- [1. Fundamentos de Programação](#1-fundamentos-de-programação-essenciais)
+- [2. Configurando o Ambiente](#2-configurando-seu-ambiente-de-desenvolvimento-java)
+- [3. Dominando a Linguagem Java](#3-dominando-a-linguagem-java)
+- [4. Fundamentos Intermediários](#4-fundamentos-intermediários-e-ferramentas)
+- [5. Frameworks Essenciais](#5-frameworks-essenciais-e-bibliotecas-do-ecossistema)
+- [6. Deploy e DevOps](#6-deploy-devops-e-boas-práticas-de-entrega)
+- [7. Aprendizado Contínuo](#7-aprendizado-contínuo-e-evolução)
+- [8. Tópicos Avançados](#8-tópicos-avançados-e-especializações-opcional)
+- [Recursos Recomendados](#recursos-recomendados)
+
 ---
 
 ## 0. Primeiro passo obrigatório: Monte sua IA de programação
 
 Antes de escrever qualquer linha de código, configure isso:
 
-Instale o Cursor (melhor ferramenta em 2026 para Java) ou VS Code com Continue.dev.  
+Instale o Cursor (melhor ferramenta em 2026 para Java) ou VS Code com Continue.dev.
 Conecte com Claude 4.6+ Sonnet ou Opus.
 
-Crie este prompt fixo e use em todo projeto:  
-“Você é um desenvolvedor Java sênior especializado em Java 25 LTS + Spring Boot 4. 
+Crie este prompt fixo e use em todo projeto:
 
-Sempre explique o motivo da escolha, mostre trade-offs, sugira testes e priorize código limpo e eficiente. Nunca use features preview em produção.”
+> "Você é um desenvolvedor Java sênior especializado em Java 25 LTS + Spring Boot 4.
+> Sempre explique o motivo da escolha, mostre trade-offs, sugira testes e priorize código limpo e eficiente. Nunca use features preview em produção."
 
-Regra de ouro: IA gera primeiro → você lê, entende, testa, melhora e escreve no decisoes.md.  
+Regra de ouro: IA gera primeiro → você lê, entende, testa, melhora e escreve no `decisoes.md`.
 Com isso pronto, você já ganha umas 4 semanas de vantagem.
 
 ---
 
 ## 1. Fundamentos de Programação Essenciais
 
-### Conceitos básicos de programação:
-- [ ] Lógica básica: algoritmos simples, fluxogramas e resolução de problemas. Peça para a IA explicar com exemplos reais e exercícios no seu nível.
-- [ ] Variáveis, tipos de dados (primitivos e referência) e operadores.
-- [ ] Estruturas de controle (condicionais if/else, switch; laços for, while, do-while).
-- [ ] Métodos (funções): declaração, parâmetros, retorno.
-- [ ] Manipulação de strings e arrays básicos.
-- [ ] Entrada e saída padrão (console).
+📁 [`01 - Aprenda os Fundamentos/`](./01%20-%20Aprenda%20os%20Fundamentos/)
 
-**Projeto prático:** Desenvolva um gerenciador de tarefas simples para linha de comando que permita adicionar, listar e remover tarefas. 
+### Sintaxe Básica
 
-Peça para a IA fazer a primeira versão com Virtual Threads para tarefas assíncronas básicas. 
-Depois você refatora tudo explicando cada parte, teste com JShell para experimentar rápido.
+| # | Tópico | Link |
+|---|--------|------|
+| 1.1 | Criando Variáveis e nomeando elas | [📄 readme](./01%20-%20Aprenda%20os%20Fundamentos/SintaxeB%C3%A1sica/1.1%20-%20Criando%20Vari%C3%A1veis%20e%20nomeando%20elas/readme.md) |
+| 1.2 | Tipos de Dados | [📄 readme](./01%20-%20Aprenda%20os%20Fundamentos/SintaxeB%C3%A1sica/1.2%20-%20Tipos%20de%20Dados/readme.md) |
+| 1.3 | Operadores | [📄 readme](./01%20-%20Aprenda%20os%20Fundamentos/SintaxeB%C3%A1sica/1.3%20-%20Operadores/readme.md) |
+| 1.4 | Estruturas de Controle | [📄 readme](./01%20-%20Aprenda%20os%20Fundamentos/SintaxeB%C3%A1sica/1.4%20-%20Estruturas%20de%20Controle/readme.md) |
+| 1.5 | Métodos | [📄 readme](./01%20-%20Aprenda%20os%20Fundamentos/SintaxeB%C3%A1sica/1.5%20-%20M%C3%A9todos/readme.md) |
+| 1.6 | Strings e Arrays | [📄 readme](./01%20-%20Aprenda%20os%20Fundamentos/SintaxeB%C3%A1sica/1.6%20-%20Strings%20e%20Arrays/readme.md) |
+| 1.7 | Entrada e Saída Padrão | [📄 readme](./01%20-%20Aprenda%20os%20Fundamentos/SintaxeB%C3%A1sica/1.7%20-%20Entrada%20e%20Sa%C3%ADda%20Padr%C3%A3o/readme.md) |
 
-### Orientação a Objetos (OOP) - O Paradigma Central do Java:
-- [ ] Classes e objetos: a base da OOP.
-- [ ] Interfaces: definindo contratos.
-- [ ] Classes abstratas.
-- [ ] Pilares da OOP:
-    - [ ] Encapsulamento: protegendo os dados.
-    - [ ] Herança: reutilizando e estendendo código.
-    - [ ] Polimorfismo: múltiplas formas de um objeto.
-    - [ ] Abstração: modelando o essencial.
+### Orientação a Objetos (OOP)
 
-**Projeto prático:** Crie um sistema simples de gerenciamento de uma biblioteca, com classes para Livro, Autor e Biblioteca, permitindo adicionar livros e buscar por título ou autor. 
+📄 [`POO/readme.md`](./01%20-%20Aprenda%20os%20Fundamentos/POO/readme.md) — Objetos, Classes, Herança, Interfaces, Classes Abstratas, Encapsulamento, Polimorfismo, Abstração.
 
-Peça para a IA gerar a base usando Record e Scoped Values, depois você ajusta e entende cada decisão.
+**Checklist:**
+- [ ] Variáveis, tipos de dados e operadores
+- [ ] Estruturas de controle
+- [ ] Métodos: declaração, parâmetros, retorno
+- [ ] Strings e arrays básicos
+- [ ] Entrada e saída padrão (console)
+- [ ] Classes e objetos
+- [ ] Interfaces e classes abstratas
+- [ ] Encapsulamento, Herança, Polimorfismo, Abstração
+
+**Projeto prático:** Gerenciador de tarefas em linha de comando (adicionar, listar, remover). Depois: sistema de biblioteca com Livro, Autor e Biblioteca usando Records.
 
 ---
 
 ## 2. Configurando seu Ambiente de Desenvolvimento Java
 
-### Escolha uma IDE/Editor de Código:
-- [ ] Cursor (principal em 2026, use como número 1).
-- [ ] IntelliJ IDEA Ultimate com a IA da JetBrains.
-- [ ] VS Code com Extension Pack for Java (leve e gratuito).
+📁 [`02 - Configurando o Ambiente/`](./02%20-%20Configurando%20o%20Ambiente/)
 
-### Gerenciamento de Dependências e Build do Projeto:
-- [ ] Apache Maven: aprenda a estrutura de projetos, pom.xml, ciclo de vida e gerenciamento de dependências (foco inicial).
-- [ ] Gradle: conheça como alternativa depois.
-- [ ] GraalVM Native Image: para compilar apps Java em executáveis nativos. Peça para a IA configurar Spring Native.
+| # | Tópico | Link |
+|---|--------|------|
+| 2.1 | IDEs e Editores (Cursor, IntelliJ, VS Code) | [📄 readme](./02%20-%20Configurando%20o%20Ambiente/2.1%20-%20IDEs%20e%20Editores/readme.md) |
+| 2.2 | Maven e Gradle + GraalVM Native Image | [📄 readme](./02%20-%20Configurando%20o%20Ambiente/2.2%20-%20Maven%20e%20Gradle/readme.md) |
+| 2.3 | Git e Controle de Versão | [📄 readme](./02%20-%20Configurando%20o%20Ambiente/2.3%20-%20Git%20e%20Controle%20de%20Vers%C3%A3o/readme.md) |
 
-### Controle de Versão com Git:
-- [ ] Comandos essenciais do Git (commit, push, pull, branch, merge, rebase). Use o site Learn Git Branching.
-- [ ] Plataformas de hospedagem: GitHub (mais popular), GitLab ou Bitbucket.
-- [ ] Fluxos de trabalho: GitHub Flow (o mais simples).
+**Checklist:**
+- [ ] Cursor como IDE principal
+- [ ] Maven: pom.xml, ciclo de vida, dependências
+- [ ] Gradle como alternativa
+- [ ] GraalVM Native Image
+- [ ] Git: comandos essenciais, GitHub Flow, Conventional Commits
 
-**Prática contínua:** Crie um repositório no GitHub para cada projeto. faça commits frequentes. 
-
-Use GitHub Codespaces quando não quiser instalar nada na máquina.
+**Prática contínua:** Crie um repositório no GitHub para cada projeto. Use GitHub Codespaces quando não quiser instalar nada.
 
 ---
 
 ## 3. Dominando a Linguagem Java
 
-### Sintaxe Moderna e Recursos das Versões LTS:
-- [ ] Foco em recursos do Java 21 LTS e Java 25 LTS.
-- [ ] var para inferência de tipo.
-- [ ] Switch Expressions.
-- [ ] Text Blocks para strings multi-linha.
-- [ ] Record Classes.
-- [ ] Pattern Matching para instanceof.
-- [ ] Sealed Classes and Interfaces.
-- [ ] Scoped Values, Unnamed Variables e String Templates.
+📁 [`03 - Dominando o Java/`](./03%20-%20Dominando%20o%20Java/)
 
-**Prática:** Para cada feature nova, peça para a IA mostrar 3 exemplos reais e dizer quando não usar em produção. 
+| # | Tópico | Link |
+|---|--------|------|
+| 3.1 | Recursos Modernos do Java 21 e 25 | [📄 readme](./03%20-%20Dominando%20o%20Java/3.1%20-%20Recursos%20Modernos%20do%20Java%2021%20e%2025/readme.md) |
+| 3.2 | Collections Framework e Streams | [📄 readme](./03%20-%20Dominando%20o%20Java/3.2%20-%20Collections%20Framework%20e%20Streams/readme.md) |
+| 3.3 | Tratamento de Exceções | [📄 readme](./03%20-%20Dominando%20o%20Java/3.3%20-%20Tratamento%20de%20Excecoes/readme.md) |
+| 3.4 | Concorrência Básica | [📄 readme](./03%20-%20Dominando%20o%20Java/3.4%20-%20Concorrencia%20Basica/readme.md) |
+| 3.5 | Boas Práticas (Clean Code, SOLID) | [📄 readme](./03%20-%20Dominando%20o%20Java/3.5%20-%20Boas%20Praticas%20de%20Codificacao/readme.md) |
 
-Depois refatore seus projetos anteriores usando essas novidades.
+**Checklist:**
+- [ ] var, Switch Expressions, Text Blocks, Records, Pattern Matching, Sealed Classes
+- [ ] Scoped Values, Unnamed Variables, Virtual Threads
+- [ ] Collections: List, Set, Map, Queue
+- [ ] Functional Interfaces, Streams, Optional
+- [ ] Tratamento de exceções e exceções customizadas
+- [ ] Thread, ExecutorService, Virtual Threads
+- [ ] Clean Code, SOLID, Object Calisthenics
 
-### APIs Fundamentais da JDK:
-- [ ] Java Collections Framework: List (ArrayList, LinkedList), Set (HashSet, TreeSet), Map (HashMap, TreeMap).
-- [ ] Functional Interfaces: base para lambdas e method references.
-- [ ] Predicate<T>, Function<T, R>, Supplier<T>.
-- [ ] Streams API e Expressões Lambda (adicione Parallel Streams para performance).
-- [ ] Tratamento de Exceções e exceções customizadas.
-- [ ] Optional.
-- [ ] java.time (LocalDate, LocalDateTime, etc.).
-
-**Projeto prático:** Crie um programa que gerencia um ranking de filmes, adicionando, classificando e listando os top N. 
-
-Peça para a IA gerar a solução completa primeiro com coleções e streams.
-
-### Introdução à Concorrência:
-- [ ] Thread e Runnable.
-- [ ] ExecutorService e ThreadPools.
-- [ ] Problemas básicos (race conditions, deadlocks).
-- [ ] Virtual Threads (Java 21+): use só quando o gargalo for I/O bloqueante.
-
-### Boas Práticas de Codificação:
-- [ ] Clean Code.
-- [ ] SOLID.
-- [ ] Convenções de nomenclatura.
-- [ ] Green Coding (reduzir loops ineficientes).
-- [ ] Object Calisthenics.
-
-Use SonarLint na IDE.  
-**Prática:** Resolva problemas no LeetCode ou HackerRank (fácil/médio). 
-
-Peça ajuda da IA e explique o código com suas palavras.
+**Projeto prático:** Ranking de filmes com coleções e streams. Refatore projetos anteriores usando as features modernas.
 
 ---
 
 ## 4. Fundamentos Intermediários e Ferramentas
 
-### Manipulação de Arquivos e I/O:
-- [ ] File, BufferedReader, BufferedWriter.
-- [ ] Java NIO: Path, Files, Channels, Buffers.
+📁 [`04 - Intermediário/`](./04%20-%20Intermedi%C3%A1rio/)
 
-**Projeto prático:** Leia um CSV de produtos, processe e salve em outro arquivo. Peça para a IA ajudar na primeira versão.
+| # | Tópico | Link |
+|---|--------|------|
+| 4.1 | Manipulação de Arquivos e IO | [📄 readme](./04%20-%20Intermedi%C3%A1rio/4.1%20-%20Manipula%C3%A7%C3%A3o%20de%20Arquivos%20e%20IO/readme.md) |
+| 4.2 | JSON com Jackson | [📄 readme](./04%20-%20Intermedi%C3%A1rio/4.2%20-%20JSON%20com%20Jackson/readme.md) |
+| 4.3 | Testes com JUnit 5, Mockito e AssertJ | [📄 readme](./04%20-%20Intermedi%C3%A1rio/4.3%20-%20Testes%20com%20JUnit%205%2C%20Mockito%20e%20AssertJ/readme.md) |
+| 4.4 | Banco de Dados com JDBC e PostgreSQL | [📄 readme](./04%20-%20Intermedi%C3%A1rio/4.4%20-%20Banco%20de%20Dados%20com%20JDBC%20e%20PostgreSQL/readme.md) |
 
-### Serialização e Desserialização:
-- [ ] JSON com Jackson (principal).
-- [ ] Avro ou Protobuf se quiser performance.
+**Checklist:**
+- [ ] File, BufferedReader/Writer, NIO (Path, Files, WatchService)
+- [ ] Jackson: ObjectMapper, anotações, TypeReference
+- [ ] JUnit 5, Mockito, AssertJ, JaCoCo
+- [ ] JDBC, PreparedStatement, HikariCP, PostgreSQL via Docker
 
-**Prática:** Converta objetos da sua biblioteca para JSON e vice-versa.
-
-### Testes Unitários Automatizados:
-- [ ] JUnit 5.
-- [ ] Mockito.
-- [ ] AssertJ.
-- [ ] JaCoCo para cobertura.
-
-**Prática:** Depois de fazer a funcionalidade, peça para a IA gerar todos os testes. 
-
-Você revisa e entende.
-
-### Acesso Básico a Banco de Dados Relacional:
-- [ ] JDBC.
-- [ ] PostgreSQL (ou H2 para testes).
-- [ ] PreparedStatement.
-
-**Projeto prático:** Crie um CRUD simples de usuários.
+**Projeto prático:** Leia um CSV de produtos, processe com Streams e salve resultado. CRUD de usuários com JDBC.
 
 ---
 
 ## 5. Frameworks Essenciais e Bibliotecas do Ecossistema
 
-### Desenvolvimento Web com Spring Framework (Foco Principal):
-- [ ] Spring Core (IoC e DI).
-- [ ] Spring MVC.
-- [ ] Spring Boot 4 (com suporte nativo a Virtual Threads).
-- [ ] Alternativas: Quarkus (performance) ou Micronaut.
-- [ ] Spring AI: integre Claude ou Grok direto na API (chat com memória).
+📁 [`05 - Frameworks/`](./05%20-%20Frameworks/)
 
-**Projeto prático:** Desenvolva uma API RESTful para um blog ou e-commerce simples. Peça para a IA gerar o projeto inteiro com Virtual Threads, GraalVM Native e testes. Depois você faz review.
+| # | Tópico | Link |
+|---|--------|------|
+| 5.1 | Spring Boot (Core, MVC, REST, Validação) | [📄 readme](./05%20-%20Frameworks/5.1%20-%20Spring%20Boot/readme.md) |
+| 5.2 | JPA e Hibernate + Spring Data + Flyway | [📄 readme](./05%20-%20Frameworks/5.2%20-%20JPA%20e%20Hibernate/readme.md) |
+| 5.3 | Spring Security + JWT + OAuth2 | [📄 readme](./05%20-%20Frameworks/5.3%20-%20Spring%20Security/readme.md) |
+| 5.4 | Documentação com OpenAPI e Swagger | [📄 readme](./05%20-%20Frameworks/5.4%20-%20Documenta%C3%A7%C3%A3o%20com%20OpenAPI%20e%20Swagger/readme.md) |
+| 5.5 | Testes de Integração + Testcontainers | [📄 readme](./05%20-%20Frameworks/5.5%20-%20Testes%20de%20Integra%C3%A7%C3%A3o/readme.md) |
 
-### Persistência de Dados com JPA e Hibernate:
-- [ ] JPA.
-- [ ] Hibernate.
-- [ ] Spring Data JPA.
-- [ ] @Transactional.
-- [ ] Flyway ou Liquibase.
+**Checklist:**
+- [ ] Spring Core: IoC, DI, @Component, @Service, @Repository
+- [ ] Spring Boot: starters, application.yml, profiles, Virtual Threads
+- [ ] Spring MVC: REST, @Valid, ControllerAdvice, CORS
+- [ ] JPA: entidades, relacionamentos, N+1, lazy loading
+- [ ] Spring Data JPA: JpaRepository, query methods, paginação
+- [ ] Flyway: migrations versionadas
+- [ ] Spring Security + JWT + OAuth2
+- [ ] springdoc-openapi + Swagger UI
+- [ ] @SpringBootTest + Testcontainers
 
-### Segurança de Aplicações:
-- [ ] Spring Security + JWT.
-- [ ] OAuth2 básico.
-- [ ] OWASP Top 10.
-- [ ] Keycloak (opcional).
-
-**Prática:** Adicione autenticação com papéis na sua API.
-
-### Desenvolvimento e Documentação de APIs:
-- [ ] OpenAPI / Swagger.
-
-**Prática:** Documente sua API.
-
-### Testes Avançados e de Integração:
-- [ ] JUnit 5 + Testcontainers.
-- [ ] @SpringBootTest.
-
-**Prática:** Escreva testes completos da API com banco real.
+**Projeto prático:** API RESTful com autenticação JWT, paginação, validação, documentação e testes de integração.
 
 ---
 
 ## 6. Deploy, DevOps e Boas Práticas de Entrega
 
-### Containerização de Aplicações:
-- [ ] Docker e Docker Compose.
-- [ ] Kubernetes básico (Pods, Services, Deployments) com ArgoCD.
-- [ ] Serverless (AWS Lambda ou Knative).
+📁 [`06 - Deploy e DevOps/`](./06%20-%20Deploy%20e%20DevOps/)
 
-**Prática:** Crie o Dockerfile otimizado. Peça para a IA gerar.
+| # | Tópico | Link |
+|---|--------|------|
+| 6.1 | Docker e Kubernetes | [📄 readme](./06%20-%20Deploy%20e%20DevOps/6.1%20-%20Docker%20e%20Kubernetes/readme.md) |
+| 6.2 | CI/CD com GitHub Actions | [📄 readme](./06%20-%20Deploy%20e%20DevOps/6.2%20-%20CI-CD%20com%20GitHub%20Actions/readme.md) |
+| 6.3 | Deploy em Nuvem (Render, AWS, GCP) | [📄 readme](./06%20-%20Deploy%20e%20DevOps/6.3%20-%20Deploy%20em%20Nuvem/readme.md) |
+| 6.4 | Monitoramento e Observabilidade | [📄 readme](./06%20-%20Deploy%20e%20DevOps/6.4%20-%20Monitoramento%20e%20Observabilidade/readme.md) |
 
-### Integração Contínua e Entrega Contínua (CI/CD):
-- [ ] GitHub Actions (principal).
-- [ ] GitLab CI (opcional).
+**Checklist:**
+- [ ] Dockerfile multi-stage + Docker Compose
+- [ ] Kubernetes: Pods, Services, Deployments, ConfigMaps, Secrets
+- [ ] GitHub Actions: pipeline build → test → deploy
+- [ ] Deploy no Render ou AWS
+- [ ] GraalVM Native Image em produção
+- [ ] Spring Boot Actuator + Prometheus + Grafana + OpenTelemetry
 
-**Prática:** Monte um pipeline que builda, testa e deploya a cada push.
-
-### Estratégias de Build e Deploy em Nuvem:
-- [ ] AWS, GCP ou Render.
-
-**Projeto prático:** Coloque sua API rodando em produção (container ou native image).
-
-### Monitoramento e Observabilidade (Básico):
-- [ ] Spring Boot Actuator.
-- [ ] Prometheus + Grafana.
-- [ ] OpenTelemetry.
-
-**Prática:** Configure e peça para a IA gerar os dashboards.
+**Projeto prático:** API rodando em produção com pipeline CI/CD, monitoramento e alertas.
 
 ---
 
 ## 7. Aprendizado Contínuo e Evolução
 
-### Padrões de Projeto:
-- [ ] Fundamentais: Singleton, Factory, Builder, etc.
-- [ ] Estruturais e comportamentais.
+📁 [`07 - Aprendizado Contínuo/`](./07%20-%20Aprendizado%20Cont%C3%ADnuo/)
 
-**Prática:** Aplique nos seus projetos.
+| # | Tópico | Link |
+|---|--------|------|
+| 7.1 | Padrões de Projeto (15 Design Patterns GoF) | [📄 readme](./07%20-%20Aprendizado%20Cont%C3%ADnuo/7.1%20-%20Padr%C3%B5es%20de%20Projeto/readme.md) |
+| 7.2 | Arquitetura (DDD, Hexagonal, Clean, Microsserviços) | [📄 readme](./07%20-%20Aprendizado%20Cont%C3%ADnuo/7.2%20-%20Arquitetura%20de%20Software/readme.md) |
+| 7.3 | Ferramentas de Produtividade (Lombok, MapStruct) | [📄 readme](./07%20-%20Aprendizado%20Cont%C3%ADnuo/7.3%20-%20Ferramentas%20de%20Produtividade/readme.md) |
+| 7.4 | Soft Skills e Carreira | [📄 readme](./07%20-%20Aprendizado%20Cont%C3%ADnuo/7.4%20-%20Soft%20Skills%20e%20Carreira/readme.md) |
 
-### Arquitetura de Software:
-- [ ] Monolito vs Microsserviços.
-- [ ] DDD e Hexagonal Architecture.
+**Checklist:**
+- [ ] Design Patterns: Singleton, Factory, Builder, Strategy, Observer, etc.
+- [ ] DDD: Entities, Value Objects, Aggregates, Bounded Contexts
+- [ ] Arquitetura Hexagonal e Clean Architecture
+- [ ] Lombok e MapStruct
+- [ ] Code reviews, ADRs, contribuição open-source
 
-**Projeto prático (avançado):** Refatore parte do projeto para microsserviço.
-
-### Ferramentas de Produtividade:
-- [ ] Lombok.
-- [ ] MapStruct.
-
-### Desenvolvimento de Soft Skills:
-- [ ] Code reviews.
-- [ ] Trabalho em equipe.
-
-**Prática:** Contribua com projetos open-source pequenos.
+**Projeto prático (avançado):** Refatore um módulo do projeto principal usando DDD + Arquitetura Hexagonal.
 
 ---
 
 ## 8. Tópicos Avançados e Especializações (Opcional)
 
-### Programação Reativa:
-- [ ] Spring WebFlux.
+📁 [`08 - Tópicos Avançados/`](./08%20-%20T%C3%B3picos%20Avan%C3%A7ados/)
 
-### Concorrência Avançada:
-- [ ] CompletableFuture + Virtual Threads.
+| # | Tópico | Link |
+|---|--------|------|
+| 8.1 | Programação Reativa com Spring WebFlux | [📄 readme](./08%20-%20T%C3%B3picos%20Avan%C3%A7ados/8.1%20-%20Programa%C3%A7%C3%A3o%20Reativa%20com%20Spring%20WebFlux/readme.md) |
+| 8.2 | Concorrência Avançada (CompletableFuture, StructuredTaskScope) | [📄 readme](./08%20-%20T%C3%B3picos%20Avan%C3%A7ados/8.2%20-%20Concorr%C3%AAncia%20Avan%C3%A7ada/readme.md) |
+| 8.3 | Otimização de Performance e JVM | [📄 readme](./08%20-%20T%C3%B3picos%20Avan%C3%A7ados/8.3%20-%20Otimiza%C3%A7%C3%A3o%20de%20Performance%20e%20JVM/readme.md) |
+| 8.4 | Nichos: Kafka, gRPC, GraphQL, DJL, Spark | [📄 readme](./08%20-%20T%C3%B3picos%20Avan%C3%A7ados/8.4%20-%20Nichos%20e%20Ecossistema%20Avan%C3%A7ado/readme.md) |
 
-### Otimização de Desempenho e Tuning da JVM:
-- [ ] VisualVM.
-
-### Exploração de Nichos:
-- [ ] Deep Java Library (IA).
-- [ ] Apache Spark e Kafka.
+**Checklist:**
+- [ ] Spring WebFlux: Mono, Flux, R2DBC
+- [ ] CompletableFuture + Virtual Threads + StructuredTaskScope
+- [ ] JVM: GC, VisualVM, JMH, GraalVM AOT
+- [ ] Kafka, gRPC, GraphQL, Apache Spark, DJL
 
 ---
 
 ## Recursos Recomendados
 
-### Documentação Oficial:
-- Java 25 LTS e Spring Boot 4.
-- Baeldung e Dev.java.
+### Documentação Oficial
+- [Java 25 LTS — dev.java](https://dev.java)
+- [Spring Boot](https://spring.io/projects/spring-boot)
+- [Baeldung](https://www.baeldung.com)
 
-### Livros:
-- Effective Java.
-- Head First Java.
-- Clean Code.
-- Java Concurrency in Practice.
+### Livros
+- Effective Java — Joshua Bloch
+- Head First Java
+- Clean Code — Robert C. Martin
+- Java Concurrency in Practice — Brian Goetz
 
-### Comunidades:
-- GUJ.
-- Discord Java Brasil.
-- Stack Overflow.
-- Reddit r/java.
+### Comunidades
+- [GUJ](https://www.guj.com.br)
+- Discord Java Brasil
+- Stack Overflow
+- Reddit [r/java](https://www.reddit.com/r/java)
 
-### Cursos:
-- Alura ou Udemy com módulo Java + IA.
-- LeetCode e HackerRank.
+### Prática
+- [LeetCode](https://leetcode.com) — fácil/médio para algoritmos
+- [HackerRank](https://www.hackerrank.com)
+- [Learn Git Branching](https://learngitbranching.js.org)
 
 ---
 
 ## Dicas Finais para o Sucesso
 
-Pratique todos os dias. Cada conceito vira projeto pequeno com testes e GitHub.  
-Sempre use a IA primeiro, mas nunca aceite sem entender.  
-Mantenha o GitHub atualizado com projetos bem explicados e o arquivo decisoes.md.  
+Pratique todos os dias. Cada conceito vira projeto pequeno com testes e GitHub.
+Sempre use a IA primeiro, mas nunca aceite sem entender.
+Mantenha o GitHub atualizado com projetos bem explicados e o arquivo `decisoes.md`.
 Fique de olho nas novidades (Java 25+, Spring AI, GraalVM). Com IA você acompanha sem stress.
 
-Se seguir esse caminho com consistência, em 3 ou 4 meses você já entrega APIs profissionais e compete no mercado.  
+Se seguir esse caminho com consistência, em 3 ou 4 meses você já entrega APIs profissionais e compete no mercado.
 
 Qualquer dúvida é só falar. Bora codar!
