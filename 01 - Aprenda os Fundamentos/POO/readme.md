@@ -41,7 +41,7 @@ Reserve um minuto agora mesmo para observar os objetos do mundo real que estão 
 
 Para cada objeto que você vir, faça a si mesmo duas perguntas: "Em que estados possíveis esse objeto pode estar?" e "Que comportamento possível esse objeto pode executar?".
 Não se esqueça de anotar suas observações. Ao fazer isso, você perceberá que os objetos do mundo real variam em complexidade;
-sua lâmpada de casa pode ter apenas três estados possíveis (ligado e desligado ou queimada kkkk) e dois comportamentos possíveis (ligar, desligar),
+sua lâmpada de casa pode ter apenas três estados possíveis (ligado, desligado ou queimada) e dois comportamentos possíveis (ligar, desligar),
 mas seu rádio pode ter estados adicionais (ligado, desligado, volume atual, estação atual) e comportamentos (ligar, desligar, aumentar o volume, diminuir o volume, buscar, procurar e sintonizar).
 Você também pode notar que alguns objetos, por sua vez, também conterão outros objetos.
 Essas observações do mundo real são um ponto de partida para entender o mundo da programação orientada a objetos.

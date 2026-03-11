@@ -448,7 +448,7 @@ public class ForEach {
 ```java
 public class JogoAdivinhacao {
     public static void main(String[] args) {
-        int numerosecreto = 42;
+        int numeroSecreto = 42;
         int[] tentativas = {10, 75, 42}; // simula as tentativas do jogador
         int maxTentativas = 5;
         boolean acertou = false;
@@ -460,11 +460,11 @@ public class JogoAdivinhacao {
             int palpite = tentativas[i < tentativas.length ? i : tentativas.length - 1];
             System.out.println("\nTentativa " + (i + 1) + ": " + palpite);
 
-            if (palpite == numerosecreto) {
+            if (palpite == numeroSecreto) {
                 System.out.println("Parabéns! Você acertou em " + (i + 1) + " tentativa(s)!");
                 acertou = true;
                 break;
-            } else if (palpite < numerosecreto) {
+            } else if (palpite < numeroSecreto) {
                 System.out.println("Muito baixo! Tente um número maior.");
             } else {
                 System.out.println("Muito alto! Tente um número menor.");
@@ -477,7 +477,7 @@ public class JogoAdivinhacao {
         }
 
         if (!acertou) {
-            System.out.println("\nGame over! O número era: " + numerosecreto);
+            System.out.println("\nGame over! O número era: " + numeroSecreto);
         }
 
         // Mostrar estatísticas com switch expression

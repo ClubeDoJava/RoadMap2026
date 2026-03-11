@@ -51,7 +51,7 @@ No painel do Render, vá em `Environment`:
 SPRING_DATASOURCE_URL=jdbc:postgresql://dpg-xxx.oregon-postgres.render.com/minhadb
 SPRING_DATASOURCE_USERNAME=appuser
 SPRING_DATASOURCE_PASSWORD=senhaGeradaPeloRender
-SPRING_JPA_HIBERNATE_DDL_AUTO=update
+SPRING_JPA_HIBERNATE_DDL_AUTO=validate
 JWT_SECRET=minha-chave-jwt-super-secreta-longa
 SPRING_PROFILES_ACTIVE=prod
 ```

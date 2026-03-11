@@ -151,7 +151,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/minhaapp
       SPRING_DATASOURCE_USERNAME: appuser
       SPRING_DATASOURCE_PASSWORD: senhaSegura123
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_HIBERNATE_DDL_AUTO: validate
       SPRING_PROFILES_ACTIVE: docker
     depends_on:
       postgres:

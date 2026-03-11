@@ -365,9 +365,9 @@ public class CalculadoraSimples {
         System.out.println("\nAcumulador final: " + acumulador);
 
         // Comparações e lógicos
-        boolean aiorQueB = a > b;
+        boolean maiorQueB = a > b;
         boolean ambosPositivos = (a > 0) && (b > 0);
-        System.out.println("\na > b:                " + aiorQueB);
+        System.out.println("\na > b:                " + maiorQueB);
         System.out.println("a e b são positivos:  " + ambosPositivos);
 
         // Ternário para classificação

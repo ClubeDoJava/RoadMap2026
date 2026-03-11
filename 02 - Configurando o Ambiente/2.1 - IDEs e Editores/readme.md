@@ -70,7 +70,7 @@ O Cursor suporta múltiplos provedores de IA. Para usar Claude (Anthropic):
 
 1. Abra **Cursor Settings** → `Cursor > AI > Model`
 2. Em **API Keys**, adicione sua chave da Anthropic
-3. Selecione o modelo `claude-sonnet-4-5` ou `claude-opus-4`
+3. Selecione o modelo de maior capacidade disponível na sua assinatura
 
 Ou via arquivo de configuração:
 
@@ -78,7 +78,7 @@ Ou via arquivo de configuração:
 {
   "cursor.aiProvider": "anthropic",
   "cursor.anthropicApiKey": "sk-ant-...",
-  "cursor.defaultModel": "claude-sonnet-4-5"
+  "cursor.defaultModel": "claude-opus-4"
 }
 ```
 
