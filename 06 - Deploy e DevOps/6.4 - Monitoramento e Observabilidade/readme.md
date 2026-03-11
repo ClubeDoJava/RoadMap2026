@@ -6,13 +6,13 @@
 ┌─────────────────────────────────────────────────────────────────┐
 │                     OBSERVABILIDADE                             │
 │                                                                 │
-│   📊 MÉTRICAS          📄 LOGS           🔍 TRACES             │
+│   METRICAS             LOGS              TRACES                 │
 │   ──────────           ────────          ─────────             │
 │   O que está           O que             Por onde               │
 │   acontecendo?         aconteceu?        passou a               │
-│   (números             (eventos          requisição?            │
-│   ao longo do          pontuais)         (rastreio              │
-│   tempo)                                 distribuído)           │
+│   (series temporais,   (eventos          requisicao?            │
+│   contadores,          imutaveis,        (rastreio              │
+│   histogramas)         ordenados)        distribuido)           │
 │                                                                 │
 │   Ferramentas:         Ferramentas:      Ferramentas:           │
 │   Prometheus           Logback           Jaeger                 │

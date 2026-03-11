@@ -551,3 +551,113 @@ public class RelatorioService {
     }
 }
 ```
+
+---
+
+## GraalVM Native Image
+
+Agora que você entende o que o ClassLoader faz, o ciclo de JIT compilation e por que um fat JAR Spring Boot demora para inicializar, o GraalVM Native Image faz sentido.
+
+O compilador AOT (Ahead-of-Time) do GraalVM faz uma análise estática completa da aplicação — rastreia todas as classes alcançáveis, todos os métodos chamados, todas as dependências — e produz um executável nativo que não precisa da JVM em runtime. Não há ClassLoader carregando classes sob demanda. Não há JIT compilando bytecode progressivamente. O código já sai como binário nativo.
+
+O resultado: startup em ~50ms em vez de 3-8 segundos, uso de memória 3-5x menor, e um executável único. Para uma função Lambda que precisa responder em menos de 100ms ou um microsserviço que escala para zero quando não há tráfego, isso muda completamente o cálculo de custo.
+
+### O problema com reflexão
+
+A análise estática do GraalVM precisa saber em tempo de build o que será carregado em tempo de execução. Reflexão é o oposto disso: `Class.forName("com.empresa.SomeClass")` decide em runtime qual classe carregar. Spring Boot usa reflexão extensivamente para injeção de dependências, serialização/desserialização, e proxies AOP.
+
+A solução é declarar o que precisa de reflexão via hints:
+
+```java
+// Classe marcada para ser incluída na análise de reflexão
+@RegisterReflectionForBinding(ProdutoDTO.class)
+public class ProdutoController { }
+
+// Ou via anotação em nível de pacote (mais comum com Spring Boot AOT)
+// O Spring Boot 3+ gera a maioria dos hints automaticamente durante o build
+```
+
+Quando você vê um `ClassNotFoundException` ou `NoSuchMethodException` em runtime depois de um build nativo — e o código funcionava normalmente na JVM — reflexão não declarada é quase certamente o culpado.
+
+### Configuração Maven
+
+```xml
+<profiles>
+    <profile>
+        <id>native</id>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.graalvm.buildtools</groupId>
+                    <artifactId>native-maven-plugin</artifactId>
+                    <version>0.10.3</version>
+                    <extensions>true</extensions>
+                    <executions>
+                        <execution>
+                            <id>build-native</id>
+                            <goals>
+                                <goal>compile-no-fork</goal>
+                            </goals>
+                            <phase>package</phase>
+                        </execution>
+                        <execution>
+                            <id>test-native</id>
+                            <goals>
+                                <goal>test</goal>
+                            </goals>
+                            <phase>test</phase>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <imageName>sistema-financeiro</imageName>
+                        <buildArgs>
+                            <buildArg>--no-fallback</buildArg>
+                            <buildArg>-H:+ReportExceptionStackTraces</buildArg>
+                            <buildArg>-O3</buildArg>
+                        </buildArgs>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <image>
+                            <name>minha-empresa/sistema-financeiro:native</name>
+                            <builder>paketobuildpacks/builder-jammy-tiny</builder>
+                            <env>
+                                <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+                            </env>
+                        </image>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+</profiles>
+```
+
+### Instalação e build
+
+```bash
+# Via SDKMAN (recomendado)
+sdk install java 21.0.4-graal
+sdk use java 21.0.4-graal
+
+# Build nativo (espere 5-15 minutos — isso é normal)
+mvn -Pnative package
+
+# O executável estará em target/
+./target/sistema-financeiro
+# Startup em ~50ms, sem JVM
+
+# Gerar imagem Docker nativa sem instalar GraalVM localmente
+mvn spring-boot:build-image -Pnative
+docker run --rm minha-empresa/sistema-financeiro:native
+```
+
+### Quando vale a pena
+
+O build de 15 minutos é real. Sem hot reload durante desenvolvimento é real. Ferramentas de profiling (JMC, async-profiler) que dependem da JVM não funcionam com o executável nativo. Não faz sentido para aplicações monolíticas com startup irrelevante onde a JVM já aquecida tem throughput superior.
+
+Faz sentido para: funções serverless (Lambda, Cloud Functions), CLIs distribuídas como executável único, microsserviços com autoescalamento agressivo onde o custo de memória idle importa, e containers em ambientes com restrição severa de memória.

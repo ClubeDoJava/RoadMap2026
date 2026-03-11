@@ -64,6 +64,8 @@ Spring Security é o framework de segurança padrão para aplicações Java. Ele
 
 A partir do Spring Security 5.7+, não se usa mais `extends WebSecurityConfigurerAdapter`. Toda a configuração é feita via `SecurityFilterChain` bean.
 
+Vale notar: o `SecurityFilterChain` é uma aplicação direta do padrão Chain of Responsibility da GoF. Cada `Filter` na cadeia decide se processa a requisição e a passa adiante ou a intercepta. Quando você implementa `OncePerRequestFilter` para validar o JWT, está adicionando um elo concreto nessa cadeia. Esse padrão e sua estrutura formal estão documentados no módulo 7.1.
+
 ### `SecurityFilterChain`
 
 ```java

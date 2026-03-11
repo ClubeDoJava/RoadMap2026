@@ -584,131 +584,15 @@ mapa.forEach((_, valor) -> processar(valor));
 
 ---
 
+
 ## Virtual Threads (Java 21)
 
-Virtual Threads são threads "leves" gerenciadas pela JVM, criadas em milhares sem o custo das threads de sistema operacional.
+Virtual Threads são o mecanismo que permite escrever código I/O bloqueante com a escalabilidade de código reativo, sem a complexidade de Mono/Flux. Criadas em milhões com custo de memória de poucos kilobytes cada, elas mudam a relação entre concorrência e simplicidade de código.
 
-**Problema que resolve:** escalabilidade de I/O bloqueante sem precisar de programação reativa complexa.
+O funcionamento interno — carrier threads, mounting/unmounting, o problema de pinning com synchronized — está coberto no módulo 3.4, onde o tema é tratado junto com ExecutorService, race conditions e as demais ferramentas de concorrência. A configuração do Spring Boot para habilitar virtual threads por request também está lá.
 
-### O problema que Virtual Threads resolvem
+Para referência rápida: `spring.threads.virtual.enabled=true` em `application.properties` é suficiente no Spring Boot 3.2+.
 
-```
-Thread de S.O. tradicional:
-- ~1MB de memória de stack
-- Custo alto de criação e troca de contexto
-- Servidor com 16GB de RAM: máximo ~16.000 threads simultâneas
-
-Virtual Thread:
-- ~few KB de memória
-- Gerenciada pela JVM sobre um pool de carrier threads
-- Servidor com 16GB de RAM: milhões de virtual threads simultâneas
-```
-
-### Como criar Virtual Threads
-
-```java
-// Forma 1: Thread.ofVirtual()
-Thread vt = Thread.ofVirtual()
-    .name("vt-processamento")
-    .start(() -> {
-        // Código que pode fazer I/O bloqueante com segurança
-        var resultado = repositorio.buscarDados(id);   // bloqueia, mas não desperdiça
-        processar(resultado);
-    });
-
-// Forma 2: ExecutorService com virtual threads (mais comum)
-try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
-    for (var pedido : listaDePedidos) {
-        executor.submit(() -> processarPedido(pedido));
-    }
-}   // aguarda todas terminarem ao fechar o try
-
-// Forma 3: com structured concurrency (Java 21+)
-try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
-    var futuroPagamento  = scope.fork(() -> verificarPagamento(pedidoId));
-    var futuroEstoque    = scope.fork(() -> verificarEstoque(pedidoId));
-    var futuroFraude     = scope.fork(() -> analisarFraude(pedidoId));
-
-    scope.join().throwIfFailed();   // aguarda todos e propaga erros
-
-    var pagamento = futuroPagamento.get();
-    var estoque   = futuroEstoque.get();
-    var fraude    = futuroFraude.get();
-
-    return new ResultadoVerificacao(pagamento, estoque, fraude);
-}
-```
-
-### Quando usar Virtual Threads
-
-```java
-// IDEAL: operações de I/O bloqueante
-// - Chamadas HTTP a APIs externas
-// - Consultas ao banco de dados
-// - Leitura/escrita de arquivos
-// - Chamadas a filas de mensagens (Kafka, RabbitMQ)
-
-@GetMapping("/pedido/{id}/detalhes")
-public PedidoDetalhes obterDetalhes(@PathVariable UUID id) {
-    // Com Virtual Threads no Spring Boot 3.2+, cada request já roda em uma virtual thread
-    // Não precisa de WebFlux/Reactive — código imperativo simples
-    var pedido      = pedidoRepo.findById(id).orElseThrow();    // I/O bloqueante — OK
-    var pagamento   = pagamentoClient.buscar(id);                // HTTP bloqueante — OK
-    var rastreio    = logisticaClient.buscar(id);                // HTTP bloqueante — OK
-
-    return new PedidoDetalhes(pedido, pagamento, rastreio);
-}
-```
-
-### Quando NÃO usar Virtual Threads
-
-```java
-// NÃO USAR 1: operações CPU-bound (não há benefício)
-// Virtual threads não ajudam quando o CPU está ocupado, não esperando I/O
-public BigDecimal calcularSimulacaoMonteCarlo(int iteracoes) {
-    // Isso vai no pool de threads tradicional (ForkJoinPool)
-    return IntStream.range(0, iteracoes)
-        .parallel()
-        .mapToDouble(i -> simular())
-        .average()
-        .orElse(0);
-}
-
-// NÃO USAR 2: synchronized com monitor (causa "pinning" da carrier thread)
-// PROBLEMÁTICO com virtual threads:
-public synchronized void processarComSynchronized() {
-    // A virtual thread "prega" (pins) a carrier thread durante todo o bloqueio
-    buscarDoBanco();  // I/O aqui bloqueia a carrier thread inteira — perde o benefício
-}
-
-// CORRETO: usar ReentrantLock em vez de synchronized quando há I/O interno
-private final ReentrantLock lock = new ReentrantLock();
-
-public void processarComLock() {
-    lock.lock();
-    try {
-        buscarDoBanco();  // Virtual thread pode ser suspensa aqui — OK
-    } finally {
-        lock.unlock();
-    }
-}
-```
-
-### Habilitando no Spring Boot 3.2+
-
-```java
-// application.properties
-// spring.threads.virtual.enabled=true
-
-// Ou via código
-@Bean
-public TomcatProtocolHandlerCustomizer<?> virtualThreadsCustomizer() {
-    return protocolHandler ->
-        protocolHandler.setExecutor(Executors.newVirtualThreadPerTaskExecutor());
-}
-```
-
----
 
 ## Resumo visual das features por versão
 

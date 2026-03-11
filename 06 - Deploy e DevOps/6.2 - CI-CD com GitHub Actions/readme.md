@@ -6,12 +6,9 @@
 
 **CD (Continuous Delivery/Deployment):** extensão do CI que automatiza a entrega do software até o ambiente de produção.
 
-**Por que implementar:**
-- Detecta bugs cedo, quando são mais baratos de corrigir
-- Elimina o "deploy manual" cheio de passos manuais e propenso a erros
-- Feedback rápido: sabe em minutos se a mudança quebrou algo
-- Histórico rastreável de todas as entregas
-- Confiança para fazer deploys com frequência
+O mecanismo que torna CI efetivo é simples: quando o desenvolvedor integra com frequência, o diff entre sua branch e a principal é pequeno. Quando um teste falha, o conjunto de mudanças que pode ter causado a falha é pequeno — frequentemente um único commit ou algumas linhas. Isso é o que "detectar bugs cedo" significa na prática: não é magia, é redução do espaço de busca do debug. Em times que integram semanalmente, um bug pode estar escondido em centenas de mudanças. Em times que integram várias vezes ao dia, geralmente está no último commit.
+
+O mesmo princípio se aplica ao deploy: entregas frequentes e incrementais são menos arriscadas do que releases grandes e infrequentes. Um deploy de 50 linhas de mudança tem superfície de problema pequena e é trivial de reverter. Um deploy de 3 semanas de desenvolvimento tem superfície enorme, e reverter é quase sempre mais doloroso do que corrigir em frente.
 
 **Diferença entre Delivery e Deployment:**
 - **Continuous Delivery:** o pipeline prepara tudo até estar pronto para produção, mas um humano aprova o deploy final

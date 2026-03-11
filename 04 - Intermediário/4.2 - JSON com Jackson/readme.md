@@ -1,6 +1,6 @@
 # 4.2 — JSON com Jackson
 
-Jackson é a biblioteca de serialização/desserialização JSON mais usada no ecossistema Java. É a padrão do Spring Boot e suporta desde casos simples até cenários complexos com tipos genéricos, customizações e módulos de extensão.
+Jackson é a biblioteca que o Spring Boot usa para converter objetos Java em JSON e vice-versa. Na maioria dos projetos, ela funciona transparentemente — até o dia em que não funciona. `UnrecognizedPropertyException` quando o JSON de entrada tem um campo que seu DTO não mapeia. `InvalidDefinitionException` porque o `ObjectMapper` não sabe serializar `LocalDateTime` sem o `JavaTimeModule`. `MismatchedInputException` ao deserializar um array para um tipo genérico sem `TypeReference`. Este guia cobre o suficiente para você entender o que está acontecendo quando essas exceções aparecem, e como configurar o Jackson corretamente desde o início.
 
 ---
 

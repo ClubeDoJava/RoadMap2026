@@ -30,7 +30,7 @@ Este roadmap foi desenhado para ajudar você no aprendizado da linguagem Java e 
 
 Antes de escrever qualquer linha de código, configure isso:
 
-Instale o Cursor (melhor ferramenta em 2026 para Java) ou VS Code com Continue.dev.
+Instale o Cursor ou VS Code com Continue.dev (o módulo 2.1 discute os prós e contras de cada opção).
 Conecte com Claude 4.6+ Sonnet ou Opus.
 
 Crie este prompt fixo e use em todo projeto:
@@ -152,9 +152,12 @@ Com isso pronto, você já ganha umas 4 semanas de vantagem.
 |---|--------|------|
 | 5.1 | Spring Boot (Core, MVC, REST, Validação) | [📄 readme](./05%20-%20Frameworks/5.1%20-%20Spring%20Boot/readme.md) |
 | 5.2 | JPA e Hibernate + Spring Data + Flyway | [📄 readme](./05%20-%20Frameworks/5.2%20-%20JPA%20e%20Hibernate/readme.md) |
-| 5.3 | Spring Security + JWT + OAuth2 | [📄 readme](./05%20-%20Frameworks/5.3%20-%20Spring%20Security/readme.md) |
-| 5.4 | Documentação com OpenAPI e Swagger | [📄 readme](./05%20-%20Frameworks/5.4%20-%20Documenta%C3%A7%C3%A3o%20com%20OpenAPI%20e%20Swagger/readme.md) |
-| 5.5 | Testes de Integração + Testcontainers | [📄 readme](./05%20-%20Frameworks/5.5%20-%20Testes%20de%20Integra%C3%A7%C3%A3o/readme.md) |
+| 5.3 | Spring Security + JWT + OAuth2 | [readme](./05%20-%20Frameworks/5.3%20-%20Spring%20Security/readme.md) |
+| 5.4 | Documentação com OpenAPI e Swagger | [readme](./05%20-%20Frameworks/5.4%20-%20Documenta%C3%A7%C3%A3o%20com%20OpenAPI%20e%20Swagger/readme.md) |
+| 5.5 | Testes de Integração + Testcontainers | [readme](./05%20-%20Frameworks/5.5%20-%20Testes%20de%20Integra%C3%A7%C3%A3o/readme.md) |
+| 5.6 | Resiliência com Resilience4j (Circuit Breaker, Retry, Bulkhead) | [readme](./05%20-%20Frameworks/5.6%20-%20Resili%C3%AAncia%20com%20Resilience4j/readme.md) |
+| 5.7 | Cache com Redis (@Cacheable, @CacheEvict, RedisTemplate) | [readme](./05%20-%20Frameworks/5.7%20-%20Cache%20com%20Redis/readme.md) |
+| 5.8 | Versionamento de APIs | [readme](./05%20-%20Frameworks/5.8%20-%20Versionamento%20de%20APIs/readme.md) |
 
 **Checklist:**
 - [ ] Spring Core: IoC, DI, @Component, @Service, @Repository
@@ -270,4 +273,4 @@ Fique de olho nas novidades (Java 25+, Spring AI, GraalVM). Com IA você acompan
 
 Se seguir esse caminho com consistência, em 3 ou 4 meses você já entrega APIs profissionais e compete no mercado.
 
-Qualquer dúvida é só falar. Bora codar!
+O conhecimento se consolida na prática. Escolha um projeto, comece pelo módulo que faz mais sentido para onde você está hoje, e construa algo real.

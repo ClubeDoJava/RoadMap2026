@@ -2,17 +2,9 @@
 
 ## O que são e por que importam
 
-Design Patterns são soluções reutilizáveis para problemas recorrentes no design de software orientado a objetos. Foram catalogados pela "Gang of Four" (GoF) no livro clássico de 1994 e organizados em três categorias:
+Design Patterns são soluções reutilizáveis para problemas recorrentes no design de software orientado a objetos. Foram catalogados pela "Gang of Four" (GoF) no livro clássico de 1994 e organizados em três categorias: criacionais (como os objetos são criados), estruturais (como os objetos se relacionam e se compõem) e comportamentais (como os objetos se comunicam e distribuem responsabilidades).
 
-- **Criacionais:** como os objetos são criados
-- **Estruturais:** como os objetos se relacionam e se compõem
-- **Comportamentais:** como os objetos se comunicam e distribuem responsabilidades
-
-**Por que importam:**
-- Vocabulário comum entre desenvolvedores: dizer "use um Strategy aqui" é mais preciso que explicar o conceito do zero
-- Soluções comprovadas por décadas de uso
-- Código mais legível, extensível e testável
-- Base para entender frameworks (Spring usa Factory, Proxy, Template Method, etc.)
+O valor prático não está em decorar nomes. Está em reconhecer quando você está usando um padrão sem saber — e, a partir daí, tomar decisões mais conscientes. Se você chegou até aqui depois de construir services, repositories e controllers com Spring Boot, já usou vários desses padrões. O `ProdutoRepository` que o Spring Data JPA implementa automaticamente é o padrão Repository. A injeção de dependência do `@Autowired` é uma forma de Dependency Injection (variação de Factory). O `SecurityFilterChain` que você configurou no módulo 5.3 é Chain of Responsibility puro — cada filtro decide se processa a requisição ou a passa para o próximo elo da cadeia. Este módulo coloca nome e estrutura formal no que você já viu funcionando.
 
 ---
 
