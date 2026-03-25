@@ -1,6 +1,141 @@
 # 8.4 - Nichos e Ecossistema Avançado
 
-## Deep Java Library (DJL) — IA/ML em Java
+> **Prioridade recomendada:** Kafka → Spring AI → gRPC/GraphQL → DJL/Spark. Kafka é infraestrutura básica de microsserviços. Spring AI tem adoção crescente e demanda de mercado real em 2026. DJL e Spark são especializações de nicho.
+
+---
+
+## Spring AI — Integração com LLMs em Java
+
+Spring AI é a abstração oficial do Spring Framework para integração com modelos de linguagem. Permite usar OpenAI, Anthropic, Mistral, Ollama e outros provedores com a mesma API, trocando o provider via configuração.
+
+### Dependência
+
+```xml
+<dependency>
+    <groupId>org.springframework.ai</groupId>
+    <artifactId>spring-ai-openai-spring-boot-starter</artifactId>
+</dependency>
+<!-- ou para Anthropic Claude -->
+<dependency>
+    <groupId>org.springframework.ai</groupId>
+    <artifactId>spring-ai-anthropic-spring-boot-starter</artifactId>
+</dependency>
+```
+
+### Chat simples
+
+```java
+@Service
+@RequiredArgsConstructor
+public class AssistenteService {
+
+    private final ChatClient chatClient;
+
+    public String responder(String pergunta) {
+        return chatClient.prompt()
+                .user(pergunta)
+                .call()
+                .content();
+    }
+
+    // Com system prompt fixo e histórico de conversa
+    public String responderComContexto(String pergunta, List<Message> historico) {
+        return chatClient.prompt()
+                .system("Você é um especialista em Java. Seja direto e prático.")
+                .messages(historico)
+                .user(pergunta)
+                .call()
+                .content();
+    }
+}
+```
+
+### Padrão RAG — Retrieval-Augmented Generation
+
+RAG resolve o problema de "o modelo não sabe sobre seus dados internos". Em vez de retreinar o modelo, você injeta o contexto relevante em cada chamada:
+
+```
+[Pergunta do usuário]
+        │
+        ▼
+[Gerar embedding da pergunta]
+        │
+        ▼
+[Buscar chunks similares no vector store]
+        │
+        ▼
+[Montar prompt: contexto + pergunta]
+        │
+        ▼
+[Enviar para LLM → Resposta contextualizada]
+```
+
+```java
+@Service
+@RequiredArgsConstructor
+public class RagService {
+
+    private final ChatClient chatClient;
+    private final VectorStore vectorStore;
+
+    // Indexar documentos (executar uma vez)
+    public void indexar(List<Document> documentos) {
+        vectorStore.add(documentos);
+    }
+
+    // Responder com contexto dos documentos indexados
+    public String responder(String pergunta) {
+        // Busca os chunks mais relevantes
+        List<Document> contexto = vectorStore.similaritySearch(
+                SearchRequest.query(pergunta).withTopK(4)
+        );
+
+        String textoContexto = contexto.stream()
+                .map(Document::getContent)
+                .collect(Collectors.joining("\n\n"));
+
+        return chatClient.prompt()
+                .system("""
+                        Responda com base APENAS no contexto fornecido.
+                        Se a informação não estiver no contexto, diga que não sabe.
+                        Contexto:
+                        """ + textoContexto)
+                .user(pergunta)
+                .call()
+                .content();
+    }
+}
+```
+
+### Configuração (application.yml)
+
+```yaml
+spring:
+  ai:
+    anthropic:
+      api-key: ${ANTHROPIC_API_KEY}
+      chat:
+        options:
+          model: claude-opus-4-5  # troque pelo modelo atual disponível na sua conta
+          max-tokens: 2048
+    # Para vector store em memória (desenvolvimento)
+    vectorstore:
+      simple:
+        defaults:
+          top-k: 4
+```
+
+> **Atenção:** identificadores de modelos mudam com frequência (ex: `claude-opus-4-5` pode tornar-se `claude-opus-4-6` ou similar). Não hardcode versões de modelo no código de produção — leia o identificador de variável de ambiente ou configuração externa.
+
+### Projeto prático
+
+Construa um assistente de documentação: indexe os READMEs do seu projeto usando Spring AI + VectorStore em memória, e responda perguntas sobre o conteúdo. Depois troque para PGVector (Postgres) para persistência real.
+
+---
+
+## Deep Java Library (DJL) — Inferência de Modelos ML em Java
+
+> **Contexto de uso:** DJL é adequado para inferência de modelos pre-treinados em Java puro, sem depender de um servidor externo. Tem adoção de mercado menor do que Spring AI para integrações com LLMs — avalie pelo caso de uso. Se o objetivo é integrar com APIs de LLMs (OpenAI, Anthropic), use Spring AI. Se o objetivo é rodar inferência local com PyTorch/ONNX, DJL é a escolha.
 
 DJL é uma biblioteca open-source da Amazon que permite executar modelos de Machine Learning em Java sem precisar escrever código Python. Suporta PyTorch, TensorFlow, MXNet e ONNX Runtime.
 

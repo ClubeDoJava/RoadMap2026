@@ -12,9 +12,11 @@ Java evoluiu radicalmente nos últimos anos. O **Java 21 LTS** (setembro de 2023
 - Sequenced Collections
 - String Templates (preview)
 
+**Java 22:**
+- Unnamed Variables e Unnamed Patterns (JEP 456) — finalizado
+
 **Java 25 (LTS):**
 - Scoped Values — finalizado
-- Unnamed Variables e Patterns — finalizado
 - Flexible Constructor Bodies
 - Module Import Declarations
 - Primitive Types in Patterns

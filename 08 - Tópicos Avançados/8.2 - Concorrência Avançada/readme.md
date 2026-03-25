@@ -146,9 +146,11 @@ List<String> resultados = ids.parallelStream()
 
 ---
 
-## StructuredTaskScope — Java 21+
+## StructuredTaskScope — Java 25 LTS
 
-`StructuredTaskScope` é a nova API de concorrência estruturada do Java 21, que garante que subtarefas não "escapem" do escopo pai. Garante que ao sair do bloco `try`, todas as tarefas filhas estão terminadas ou canceladas.
+> **Status:** `StructuredTaskScope` ficou em preview no Java 21, 22, 23 e 24. Assumindo Java 25 LTS como base, use com `--enable-preview` em versões anteriores ao 25. Verifique sempre o JEP correspondente antes de usar em produção.
+
+`StructuredTaskScope` é a nova API de concorrência estruturada que garante que subtarefas não "escapem" do escopo pai. Ao sair do bloco `try`, todas as tarefas filhas estão terminadas ou canceladas — elimina o problema de threads "soltas" do estilo `CompletableFuture` tradicional.
 
 ```java
 import java.util.concurrent.StructuredTaskScope;

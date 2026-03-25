@@ -512,3 +512,123 @@ jobs:
           echo "Commit: ${{ github.sha }}"
           echo "Autor: ${{ github.actor }}"
 ```
+
+---
+
+## Feature Flags com OpenFeature
+
+Feature flags permitem **desacoplar deploy de release**: você faz deploy do código novo para produção, mas a feature só é ativada para usuários específicos via flag — sem novo deploy. Isso possibilita rollout gradual, testes A/B e rollback instantâneo.
+
+**OpenFeature** é a especificação aberta (CNCF) que padroniza a API de feature flags, independente do provedor (OpenFeature SDK + qualquer backend: Flagd, Unleash, LaunchDarkly, etc.).
+
+### Dependência
+
+```xml
+<dependency>
+    <groupId>dev.openfeature</groupId>
+    <artifactId>sdk</artifactId>
+    <version>1.10.0</version>
+</dependency>
+<!-- Provider: Flagd (self-hosted, open-source) -->
+<dependency>
+    <groupId>dev.openfeature.contrib.providers</groupId>
+    <artifactId>flagd</artifactId>
+    <version>0.8.9</version>
+</dependency>
+```
+
+### Configuração no Spring Boot
+
+```java
+@Configuration
+public class FeatureFlagConfig {
+
+    @Bean
+    public OpenFeatureAPI openFeatureAPI() {
+        OpenFeatureAPI api = OpenFeatureAPI.getInstance();
+        // Flagd rodando localmente (via Docker) ou na infra
+        api.setProviderAndWait(new FlagdProvider());
+        return api;
+    }
+
+    @Bean
+    public Client featureFlagClient(OpenFeatureAPI api) {
+        return api.getClient("minha-app");
+    }
+}
+```
+
+### Usando flags no código
+
+```java
+@Service
+@RequiredArgsConstructor
+public class CheckoutService {
+
+    private final Client featureFlags;
+    private final CheckoutLegacyProcessor legacyProcessor;
+    private final CheckoutV2Processor v2Processor;
+
+    public PedidoResponse processar(CheckoutRequest request) {
+        // Flag booleana: ativa o novo fluxo de checkout para usuários piloto
+        boolean usarNovoCheckout = featureFlags.getBooleanValue(
+                "novo-checkout-v2",
+                false,   // valor padrão se a flag não existir
+                new MutableContext().add("userId", request.userId())
+        );
+
+        if (usarNovoCheckout) {
+            return v2Processor.processar(request);
+        }
+        return legacyProcessor.processar(request);
+    }
+}
+```
+
+### Arquivo de flags do Flagd (flags.json)
+
+```json
+{
+  "flags": {
+    "novo-checkout-v2": {
+      "state": "ENABLED",
+      "variants": {
+        "on": true,
+        "off": false
+      },
+      "defaultVariant": "off",
+      "targeting": {
+        "if": [
+          { "in": [{ "var": "userId" }, ["user-123", "user-456", "user-789"]] },
+          "on",
+          "off"
+        ]
+      }
+    }
+  }
+}
+```
+
+### Flagd via Docker Compose
+
+```yaml
+services:
+  flagd:
+    image: ghcr.io/open-feature/flagd:latest
+    ports:
+      - "8013:8013"
+    volumes:
+      - ./flags.json:/etc/flagd/flags.json
+    command: start --uri file:/etc/flagd/flags.json
+```
+
+### Quando usar feature flags
+
+| Caso de uso | Benefício |
+|---|---|
+| Lançar feature para % de usuários | Rollout gradual sem risco |
+| Ativar/desativar feature em produção sem deploy | Resposta imediata a incidentes |
+| Teste A/B de UX ou performance | Evidência de qual versão é melhor |
+| Entrega de feature antes do prazo de marketing | Deploy e release desacoplados |
+
+> **Regra:** feature flags são temporárias. Após a feature estar estável e ativa para 100% dos usuários, remova a flag e o código do path antigo. Flags esquecidas viram dívida técnica.

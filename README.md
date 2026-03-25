@@ -23,6 +23,7 @@ Este roadmap foi desenhado para ajudar você no aprendizado da linguagem Java e 
 - [7. Aprendizado Contínuo](#7-aprendizado-contínuo-e-evolução)
 - [8. Tópicos Avançados](#8-tópicos-avançados-e-especializações-opcional)
 - [Recursos Recomendados](#recursos-recomendados)
+- [Apêndice — Algoritmos e Estruturas de Dados](#apêndice--algoritmos-e-estruturas-de-dados)
 
 ---
 
@@ -84,14 +85,13 @@ Com isso pronto, você já ganha umas 4 semanas de vantagem.
 | # | Tópico | Link |
 |---|--------|------|
 | 2.1 | IDEs e Editores (Cursor, IntelliJ, VS Code) | [📄 readme](./02%20-%20Configurando%20o%20Ambiente/2.1%20-%20IDEs%20e%20Editores/readme.md) |
-| 2.2 | Maven e Gradle + GraalVM Native Image | [📄 readme](./02%20-%20Configurando%20o%20Ambiente/2.2%20-%20Maven%20e%20Gradle/readme.md) |
+| 2.2 | Maven e Gradle | [📄 readme](./02%20-%20Configurando%20o%20Ambiente/2.2%20-%20Maven%20e%20Gradle/readme.md) |
 | 2.3 | Git e Controle de Versão | [📄 readme](./02%20-%20Configurando%20o%20Ambiente/2.3%20-%20Git%20e%20Controle%20de%20Vers%C3%A3o/readme.md) |
 
 **Checklist:**
-- [ ] Cursor como IDE principal
+- [ ] Escolha e configure sua IDE (Cursor, IntelliJ IDEA ou VS Code — veja comparativo no módulo 2.1)
 - [ ] Maven: pom.xml, ciclo de vida, dependências
 - [ ] Gradle como alternativa
-- [ ] GraalVM Native Image
 - [ ] Git: comandos essenciais, GitHub Flow, Conventional Commits
 
 **Prática contínua:** Crie um repositório no GitHub para cada projeto. Use GitHub Codespaces quando não quiser instalar nada.
@@ -119,7 +119,9 @@ Com isso pronto, você já ganha umas 4 semanas de vantagem.
 - [ ] Thread, ExecutorService, Virtual Threads
 - [ ] Clean Code, SOLID, Object Calisthenics
 
-**Projeto prático:** Ranking de filmes com coleções e streams. Refatore projetos anteriores usando as features modernas.
+**Projeto prático:** Processador de eventos de domínio — use Sealed Classes + Pattern Matching para modelar os tipos de evento (sem framework). Depois: ranking de filmes com coleções e streams. Refatore projetos anteriores usando as features modernas.
+
+> **Antes de avançar para o módulo 5 (Spring Boot):** estude os padrões essenciais do módulo 7.1 (Strategy, Factory, Builder, Observer, Proxy, Chain of Responsibility). Construir services sem saber o que é Strategy resulta em `if-else` em cascata que você vai precisar refatorar. Oito padrões bem entendidos valem mais do que o catálogo GoF completo decorado.
 
 ---
 
@@ -170,7 +172,7 @@ Com isso pronto, você já ganha umas 4 semanas de vantagem.
 - [ ] springdoc-openapi + Swagger UI
 - [ ] @SpringBootTest + Testcontainers
 
-**Projeto prático:** API RESTful com autenticação JWT, paginação, validação, documentação e testes de integração.
+**Projeto prático:** API de e-commerce com autenticação JWT, controle de acesso por papel (admin/usuário), documentação OpenAPI, versionamento de pelo menos um endpoint, Circuit Breaker em chamada a API de CEP externa, cache de listagem de produtos, cobertura de integração com Testcontainers nos fluxos críticos. Inclua testes de contrato com Pact para garantir que o contrato do consumidor não quebra silenciosamente.
 
 ---
 
@@ -181,19 +183,21 @@ Com isso pronto, você já ganha umas 4 semanas de vantagem.
 | # | Tópico | Link |
 |---|--------|------|
 | 6.1 | Docker e Kubernetes | [📄 readme](./06%20-%20Deploy%20e%20DevOps/6.1%20-%20Docker%20e%20Kubernetes/readme.md) |
-| 6.2 | CI/CD com GitHub Actions | [📄 readme](./06%20-%20Deploy%20e%20DevOps/6.2%20-%20CI-CD%20com%20GitHub%20Actions/readme.md) |
+| 6.2 | CI/CD com GitHub Actions + Feature Flags | [📄 readme](./06%20-%20Deploy%20e%20DevOps/6.2%20-%20CI-CD%20com%20GitHub%20Actions/readme.md) |
 | 6.3 | Deploy em Nuvem (Render, AWS, GCP) | [📄 readme](./06%20-%20Deploy%20e%20DevOps/6.3%20-%20Deploy%20em%20Nuvem/readme.md) |
 | 6.4 | Monitoramento e Observabilidade | [📄 readme](./06%20-%20Deploy%20e%20DevOps/6.4%20-%20Monitoramento%20e%20Observabilidade/readme.md) |
+| 6.5 | Testes de Carga com k6 | [📄 readme](./06%20-%20Deploy%20e%20DevOps/6.5%20-%20Testes%20de%20Carga/readme.md) |
 
 **Checklist:**
 - [ ] Dockerfile multi-stage + Docker Compose
-- [ ] Kubernetes: Pods, Services, Deployments, ConfigMaps, Secrets
+- [ ] Kubernetes: Pods, Services, Deployments, ConfigMaps, Secrets, liveness/readiness probes
 - [ ] GitHub Actions: pipeline build → test → deploy
 - [ ] Deploy no Render ou AWS
-- [ ] GraalVM Native Image em produção
 - [ ] Spring Boot Actuator + Prometheus + Grafana + OpenTelemetry
+- [ ] Feature flags com OpenFeature (desacoplar deploy de release)
+- [ ] Testes de carga com k6: medir throughput, p95 e p99 de latência
 
-**Projeto prático:** API rodando em produção com pipeline CI/CD, monitoramento e alertas.
+**Projeto prático:** API rodando em produção com pipeline CI/CD completo, dashboard Grafana, alertas configurados, feature flags habilitando rollout gradual, e relatório de teste de carga com p95 documentado.
 
 ---
 
@@ -219,22 +223,26 @@ Com isso pronto, você já ganha umas 4 semanas de vantagem.
 
 ---
 
-## 8. Tópicos Avançados e Especializações (Opcional)
+## 8. Tópicos Avançados e Especializações
 
 📁 [`08 - Tópicos Avançados/`](./08%20-%20T%C3%B3picos%20Avan%C3%A7ados/)
+
+> **Nota:** Kafka não é opcional para quem trabalha com microsserviços. Qualquer dev Java pleno em 2026 vai encontrar mensageria assíncrona em produção. Priorize 8.4 se o seu foco é arquitetura de sistemas.
 
 | # | Tópico | Link |
 |---|--------|------|
 | 8.1 | Programação Reativa com Spring WebFlux | [📄 readme](./08%20-%20T%C3%B3picos%20Avan%C3%A7ados/8.1%20-%20Programa%C3%A7%C3%A3o%20Reativa%20com%20Spring%20WebFlux/readme.md) |
 | 8.2 | Concorrência Avançada (CompletableFuture, StructuredTaskScope) | [📄 readme](./08%20-%20T%C3%B3picos%20Avan%C3%A7ados/8.2%20-%20Concorr%C3%AAncia%20Avan%C3%A7ada/readme.md) |
-| 8.3 | Otimização de Performance e JVM | [📄 readme](./08%20-%20T%C3%B3picos%20Avan%C3%A7ados/8.3%20-%20Otimiza%C3%A7%C3%A3o%20de%20Performance%20e%20JVM/readme.md) |
-| 8.4 | Nichos: Kafka, gRPC, GraphQL, DJL, Spark | [📄 readme](./08%20-%20T%C3%B3picos%20Avan%C3%A7ados/8.4%20-%20Nichos%20e%20Ecossistema%20Avan%C3%A7ado/readme.md) |
+| 8.3 | Otimização de Performance e JVM (JMH, GC, GraalVM AOT) | [📄 readme](./08%20-%20T%C3%B3picos%20Avan%C3%A7ados/8.3%20-%20Otimiza%C3%A7%C3%A3o%20de%20Performance%20e%20JVM/readme.md) |
+| 8.4 | Kafka (essencial), gRPC, GraphQL, Spring AI, Spark | [📄 readme](./08%20-%20T%C3%B3picos%20Avan%C3%A7ados/8.4%20-%20Nichos%20e%20Ecossistema%20Avan%C3%A7ado/readme.md) |
 
 **Checklist:**
-- [ ] Spring WebFlux: Mono, Flux, R2DBC
+- [ ] Spring WebFlux: Mono, Flux, R2DBC (quando realmente precisar de streaming)
 - [ ] CompletableFuture + Virtual Threads + StructuredTaskScope
 - [ ] JVM: GC, VisualVM, JMH, GraalVM AOT
-- [ ] Kafka, gRPC, GraphQL, Apache Spark, DJL
+- [ ] **Kafka** — Producer, Consumer, particionamento, idempotência, Dead Letter Topic
+- [ ] **Spring AI** — integração com LLMs, padrão RAG básico
+- [ ] gRPC, GraphQL (conforme o contexto do projeto)
 
 ---
 
@@ -242,14 +250,21 @@ Com isso pronto, você já ganha umas 4 semanas de vantagem.
 
 ### Documentação Oficial
 - [Java 25 LTS — dev.java](https://dev.java)
-- [Spring Boot](https://spring.io/projects/spring-boot)
+- [Spring Boot Reference](https://spring.io/projects/spring-boot)
+- [Spring Framework Reference (Core)](https://docs.spring.io/spring-framework/reference/) — leia o capítulo de IoC/DI antes de qualquer outro
 - [Baeldung](https://www.baeldung.com)
 
+### YouTube / Blogs
+- **Inside Java** (canal oficial Oracle) — cobre cada JEP com profundidade, direto dos autores
+- Blog de Mark Reinhold e do Project Loom — fonte primária de Virtual Threads e Structured Concurrency
+
 ### Livros
-- Effective Java — Joshua Bloch
-- Head First Java
-- Clean Code — Robert C. Martin
-- Java Concurrency in Practice — Brian Goetz
+- **Effective Java** — Joshua Bloch (obrigatório — leia no mínimo duas vezes)
+- **Java Concurrency in Practice** — Brian Goetz (obrigatório antes de Virtual Threads em produção)
+- **Clean Code** — Robert C. Martin
+- **Designing Data-Intensive Applications** — Martin Kleppmann (indispensável para sistemas distribuídos)
+- **Release It!** — Michael Nygard (origem dos padrões Circuit Breaker e Bulkhead)
+- Head First Java (para quem está no início)
 
 ### Comunidades
 - [GUJ](https://www.guj.com.br)
@@ -271,6 +286,26 @@ Sempre use a IA primeiro, mas nunca aceite sem entender.
 Mantenha o GitHub atualizado com projetos bem explicados e o arquivo `decisoes.md`.
 Fique de olho nas novidades (Java 25+, Spring AI, GraalVM). Com IA você acompanha sem stress.
 
-Se seguir esse caminho com consistência, em 3 ou 4 meses você já entrega APIs profissionais e compete no mercado.
+**Estimativa de tempo honesta** (estudando 1,5–2h/dia com consistência e construindo os projetos):
+
+| Módulos | Perfil iniciante | Perfil com base em outra linguagem |
+|---------|-----------------|-----------------------------------|
+| 1–3 | 7–9 semanas | 3–5 semanas |
+| 4–5 | 7–9 semanas | 5–7 semanas |
+| 6–7 | 8–10 semanas | 5–7 semanas |
+| 8 | 4–6 semanas | 3–4 semanas |
+| **Total** | **6–8 meses** | **4–6 meses** |
+
+> O ponto de maior risco de burnout é o módulo 5. Se travar: construa o CRUD mais simples possível com Spring Boot e Postgres sem nenhum extra, coloque em produção, e só então adicione uma camada de cada vez.
 
 O conhecimento se consolida na prática. Escolha um projeto, comece pelo módulo que faz mais sentido para onde você está hoje, e construa algo real.
+
+---
+
+## Apêndice — Algoritmos e Estruturas de Dados
+
+📁 [`Apêndice - Algoritmos e Estruturas de Dados/`](./Ap%C3%AAndice%20-%20Algoritmos%20e%20Estruturas%20de%20Dados/)
+
+Complexidade algorítmica, Big-O aplicado às Collections Java, Pilha, Fila, PriorityQueue, BST, Grafos com BFS/DFS, e 15 exercícios com os padrões que aparecem em entrevistas e em código de produção real.
+
+> **Quando estudar:** após o módulo 3.2, em paralelo com os módulos 4 e 5. Não espere terminar o roadmap.

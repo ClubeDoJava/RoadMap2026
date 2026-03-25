@@ -650,3 +650,106 @@ mvn test -DexcludedGroups=integracao
 ```
 
 > **Atenção:** Testcontainers requer Docker instalado e rodando na máquina de desenvolvimento e no ambiente de CI/CD. Em pipelines como GitHub Actions, use o `ubuntu-latest` que já vem com Docker disponível.
+
+---
+
+## Contract Testing com Pact
+
+Testes de integração com Testcontainers verificam que *seu serviço* funciona com o banco. Mas quem garante que o contrato entre dois microsserviços não quebrou silenciosamente? Se o serviço A chama o serviço B e o B muda um campo no response JSON, o A vai quebrar em produção — mas os testes de integração de cada serviço continuarão passando individualmente.
+
+**Pact** resolve isso: o consumidor define o contrato que espera, o produtor verifica que atende esse contrato.
+
+### Dependência
+
+```xml
+<!-- Consumidor -->
+<dependency>
+    <groupId>au.com.dius.pact.consumer</groupId>
+    <artifactId>junit5</artifactId>
+    <version>4.6.14</version>
+    <scope>test</scope>
+</dependency>
+
+<!-- Produtor -->
+<dependency>
+    <groupId>au.com.dius.pact.provider</groupId>
+    <artifactId>junit5spring</artifactId>
+    <version>4.6.14</version>
+    <scope>test</scope>
+</dependency>
+```
+
+### No consumidor — define o contrato esperado
+
+```java
+@ExtendWith(PactConsumerTestExt.class)
+@PactTestFor(providerName = "produto-service", port = "8081")
+class ProdutoClientPactTest {
+
+    @Pact(consumer = "pedido-service")
+    public RequestResponsePact buscarProduto(PactDslWithProvider builder) {
+        return builder
+                .given("produto 42 existe")
+                .uponReceiving("GET /produtos/42")
+                    .path("/produtos/42")
+                    .method("GET")
+                .willRespondWith()
+                    .status(200)
+                    .body(new PactDslJsonBody()
+                        .integerType("id", 42)
+                        .stringType("nome", "Notebook")
+                        .decimalType("preco", 3500.00)
+                        .booleanType("disponivel", true))
+                .toPact();
+    }
+
+    @Test
+    @PactTestFor(pactMethod = "buscarProduto")
+    void deveDeserializarProdutoCorretamente(MockServer mockServer) {
+        ProdutoClient client = new ProdutoClient(mockServer.getUrl());
+        ProdutoDTO produto = client.buscar(42L);
+
+        assertThat(produto.id()).isEqualTo(42L);
+        assertThat(produto.nome()).isEqualTo("Notebook");
+        assertThat(produto.disponivel()).isTrue();
+    }
+}
+```
+
+### No produtor — verifica o contrato
+
+```java
+@Provider("produto-service")
+@PactFolder("pacts")  // Pasta com os arquivos .json gerados pelo consumidor
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+class ProdutoServicePactVerificationTest {
+
+    @LocalServerPort
+    private int port;
+
+    @BeforeEach
+    void setUp(PactVerificationContext context) {
+        context.setTarget(new HttpTestTarget("localhost", port));
+    }
+
+    @TestTemplate
+    @ExtendWith(PactVerificationInvocationContextProvider.class)
+    void verificarContrato(PactVerificationContext context) {
+        context.verifyInteraction();
+    }
+
+    @State("produto 42 existe")
+    void produtoExiste() {
+        // Prepara o estado: garante que o produto 42 existe no banco de teste
+    }
+}
+```
+
+### Por que isso importa
+
+Sem Pact, a única forma de garantir compatibilidade entre serviços é manter testes E2E com todo o ambiente rodando — caro, frágil e lento. Com Pact:
+- O consumidor documenta o que precisa e o teste falha imediatamente se o produtor não atender
+- O produtor tem um "safety net" antes de fazer deploy
+- A verificação pode rodar no CI sem o consumidor subido
+
+> **Onde guardar os contratos:** em um [Pact Broker](https://docs.pact.io/pact_broker) centralizado (há versão self-hosted e PactFlow cloud), ou na pasta `pacts/` do repositório do consumidor compartilhada via CI.

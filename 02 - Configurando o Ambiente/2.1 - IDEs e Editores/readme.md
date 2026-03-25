@@ -10,7 +10,7 @@ Escolher a ferramenta certa é uma das decisões mais impactantes na sua produti
 |---------------------------|-------------------------|--------------------------|--------------------------------|
 | Preço                     | Grátis / $20/mês Pro    | ~$249/ano                | Gratuito                       |
 | Peso                      | Médio                   | Pesado                   | Leve                           |
-| IA nativa                 | Sim (melhor em 2026)    | Parcial (plugin)         | Parcial (GitHub Copilot)       |
+| IA nativa                 | Sim (foco principal)    | Parcial (plugin)         | Parcial (GitHub Copilot)       |
 | Suporte Java enterprise   | Bom                     | Excelente                | Razoável                       |
 | Refatoração automática    | Boa                     | Excelente                | Boa (com extensões)            |
 | Depurador visual          | Sim                     | Excelente                | Sim                            |
@@ -18,9 +18,9 @@ Escolher a ferramenta certa é uma das decisões mais impactantes na sua produti
 
 ---
 
-## Cursor — O Melhor para Java em 2026
+## Cursor — IA Integrada ao Centro do Fluxo de Trabalho
 
-O Cursor é um fork do VS Code construído do zero com IA no centro do fluxo de trabalho. Em 2026 é a escolha mais produtiva para a maioria dos desenvolvedores Java.
+O Cursor é um fork do VS Code construído do zero com IA no centro do fluxo. É uma escolha produtiva para quem valoriza edição assistida por IA e trabalha com projetos de complexidade moderada.
 
 ### Por que o Cursor se destaca
 
@@ -444,9 +444,9 @@ Crie o arquivo `.devcontainer/devcontainer.json` no seu repositório:
 | Situação                                        | Recomendação             |
 |-------------------------------------------------|--------------------------|
 | Aprendendo Java, projetos pequenos              | VS Code com Extension Pack |
-| Desenvolvimento profissional com foco em IA     | **Cursor**               |
-| Projetos Spring Boot complexos, enterprise      | **IntelliJ IDEA Ultimate** |
+| Foco em produtividade com IA, projetos novos    | **Cursor**               |
+| Projetos Spring Boot complexos, enterprise, legado | **IntelliJ IDEA Ultimate** |
 | Não quer instalar nada                          | GitHub Codespaces        |
 | Analisar qualidade de código em qualquer IDE    | + SonarLint (plugin)     |
 
-> **Dica de 2026:** muitos profissionais usam **Cursor** no dia a dia e **IntelliJ** para debugging avançado e análise de projetos legados. As duas ferramentas se complementam.
+> **Nota sobre escolha de IDE:** Cursor e IntelliJ Ultimate têm casos de uso complementares, não excludentes. Para refatorações cross-module, análise de heap, profiling integrado e suporte nativo a Spring/Hibernate em projetos de grande porte, o IntelliJ continua sendo a ferramenta mais completa disponível. Muitos profissionais usam Cursor no dia a dia e IntelliJ para debugging avançado e análise de projetos legados. Escolha com base no seu projeto atual, não em tendência.

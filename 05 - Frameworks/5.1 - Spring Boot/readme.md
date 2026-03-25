@@ -2,6 +2,16 @@
 
 Spring Boot é o framework mais usado no ecossistema Java. Ele simplifica a criação de aplicações Spring ao eliminar a configuração manual: servidor embutido, auto-configuração, e convenções sensatas prontas para uso.
 
+> **Antes de começar:** adicione Lombok ao seu `pom.xml` agora. Você vai escrever muitas classes com construtores, getters e builders — o Lombok elimina esse boilerplate via anotações (`@Data`, `@Builder`, `@RequiredArgsConstructor`, `@Slf4j`). O módulo 7.3 explica as anotações em detalhe. Para Records (DTOs imutáveis), prefira o Record do Java 16+ ao `@Data` do Lombok — mais simples e sem dependência extra.
+>
+> ```xml
+> <dependency>
+>     <groupId>org.projectlombok</groupId>
+>     <artifactId>lombok</artifactId>
+>     <optional>true</optional>
+> </dependency>
+> ```
+
 ---
 
 ## Spring Core — IoC e Injeção de Dependência
