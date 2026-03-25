@@ -21,7 +21,8 @@ Este roadmap foi desenhado para ajudar você no aprendizado da linguagem Java e 
 - [5. Frameworks Essenciais](#5-frameworks-essenciais-e-bibliotecas-do-ecossistema)
 - [6. Deploy e DevOps](#6-deploy-devops-e-boas-práticas-de-entrega)
 - [7. Aprendizado Contínuo](#7-aprendizado-contínuo-e-evolução)
-- [8. Tópicos Avançados](#8-tópicos-avançados-e-especializações-opcional)
+- [8. Tópicos Avançados](#8-tópicos-avançados-e-especializações)
+- [9. Próximos Passos](#9-próximos-passos)
 - [Recursos Recomendados](#recursos-recomendados)
 - [Apêndice — Algoritmos e Estruturas de Dados](#apêndice--algoritmos-e-estruturas-de-dados)
 
@@ -252,6 +253,24 @@ Com isso pronto, você já ganha umas 4 semanas de vantagem.
 - [ ] **Kafka** — Producer, Consumer, particionamento, idempotência, Dead Letter Topic
 - [ ] **Spring AI** — integração com LLMs, padrão RAG básico
 - [ ] gRPC, GraphQL (conforme o contexto do projeto)
+
+---
+
+## 9. Próximos Passos
+
+📁 [`09 - Próximos Passos/`](./09%20-%20Pr%C3%B3ximos%20Passos/)
+
+Mapa de bifurcações para depois do roadmap — não ensina, **orienta**. Cada trilha aponta para um caminho de especialização com contexto de quando faz sentido e por onde começar.
+
+| Trilha | Foco | Quando priorizar |
+|---|---|---|
+| 1 — Cloud-Native | Quarkus, Micronaut, GraalVM AOT | Serverless, muitas instâncias, cold start importa |
+| 2 — Dados e Streaming | Kafka Streams, Flink, Spark | Pipelines em tempo real, volume de TBs |
+| 3 — Arquitetura Avançada | CQRS, Event Sourcing, Saga | Consistência em sistemas distribuídos |
+| 4 — IA em Java | Spring AI avançado, LangChain4j | Produtos com LLMs como parte da lógica |
+| 5 — Certificações | OCP 21, AWS Developer, Spring Pro | Validação formal, diferenciação em processos |
+| 6 — Open Source | Spring, Resilience4j, OpenFeature | Portfólio público, aprendizado por code review |
+| 7 — Staff/Principal | Escrita técnica, influência, sistemas de escala | 5+ anos, crescimento além do código |
 
 ---
 
