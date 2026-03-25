@@ -8,6 +8,8 @@ Esta seção o apresentará a objetos, classes, herança, interfaces e pacotes.
 Cada discussão se concentra em como esses conceitos se relacionam com o mundo real
 e, ao mesmo tempo, fornece uma introdução à sintaxe da linguagem de programação Java.
 
+> **Vale saber desde o início:** Java não é POO pura. Tipos como `int`, `boolean` e `double` não são objetos — são primitivos sem métodos, sem classe, fora do modelo de objetos. O Java criou wrappers (`Integer`, `Boolean`, `Double`) para contornar isso, mas a tensão existe: em linguagens como Smalltalk e Ruby, o número `5` é um objeto que responde a mensagens. No Java, `5` é só um valor na memória. Isso não impede aprender OOP pelo Java — ele é excelente para isso — mas é bom saber que o modelo tem limites filosóficos. Você vai sentir esse atrito quando precisar converter `int` para `Integer` para usar em uma coleção genérica, ou quando encontrar uma classe cheia de métodos `static` que não pertence a nenhum objeto de verdade.
+
 ---
 
 ## Índice

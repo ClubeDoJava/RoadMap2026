@@ -286,9 +286,13 @@ Predicate<Integer> ehPar = n -> n % 2 == 0;
 
 ## SOLID
 
+> **SOLID é heurística, não lei.** Robert Martin criou os princípios para ajudar desenvolvedores a escrever código que não vira bola de lama com o tempo — não para ser um checklist de code review. O risco real de aplicar SOLID mecanicamente não é que ele produza código ruim: é que ele dá a sensação de que código bom foi produzido. Você fragmenta classes, satisfaz as cinco letras, passa no code review — e entrega um sistema que ninguém consegue mudar sem medo, porque as peças foram cortadas no tamanho certo mas coladas no lugar errado.
+>
+> Quem pensa em domínio antes aplica SOLID naturalmente — o raciocínio vem primeiro, a letra é consequência. Os exemplos abaixo mostram os princípios em ação, mas o ponto de partida sempre deve ser: "quais são as responsabilidades reais do meu domínio?" — não "quantas classes estou usando?"
+
 ### S — Single Responsibility Principle
 
-Uma classe deve ter apenas um motivo para mudar.
+Uma classe deve ter apenas um motivo para mudar — e esse motivo deve ser rastreável a uma responsabilidade real do domínio, não a um critério de tamanho de arquivo.
 
 ```java
 // VIOLANDO SRP — classe que faz tudo
